@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # JDK necessario para o build Gradle do Android.
       - name: Configurar JDK 17 (Temurin)
