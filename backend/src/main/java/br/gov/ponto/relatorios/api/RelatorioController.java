@@ -2,7 +2,9 @@ package br.gov.ponto.relatorios.api;
 
 import br.gov.ponto.relatorios.AbonoRelatorioService;
 import br.gov.ponto.relatorios.AdesaoService;
+import br.gov.ponto.relatorios.AejService;
 import br.gov.ponto.relatorios.AfdService;
+import br.gov.ponto.relatorios.rep.CampoLeiaute;
 import br.gov.ponto.relatorios.AnomaliaService;
 import br.gov.ponto.relatorios.AlertaRiscoService;
 import br.gov.ponto.ia.ResumoIaService;
@@ -38,6 +40,7 @@ public class RelatorioController {
 
     private final RelatorioService relatorioService;
     private final AfdService afdService;
+    private final AejService aejService;
     private final PdfEspelhoService pdfEspelhoService;
     private final IntegridadeService integridadeService;
     private final IndicadoresService indicadoresService;
@@ -55,6 +58,7 @@ public class RelatorioController {
     private final PrevisaoService previsaoService;
 
     public RelatorioController(RelatorioService relatorioService, AfdService afdService,
+                               AejService aejService,
                                PdfEspelhoService pdfEspelhoService, IntegridadeService integridadeService,
                                IndicadoresService indicadoresService, DeteccaoService deteccaoService,
                                AlertaRiscoService alertaRiscoService, BiExecutivoService biExecutivoService,
@@ -65,6 +69,7 @@ public class RelatorioController {
                                PrevisaoService previsaoService) {
         this.relatorioService = relatorioService;
         this.afdService = afdService;
+        this.aejService = aejService;
         this.pdfEspelhoService = pdfEspelhoService;
         this.integridadeService = integridadeService;
         this.indicadoresService = indicadoresService;
@@ -103,20 +108,34 @@ public class RelatorioController {
         return afdService.gerar(competencia);
     }
 
-    /** AFD como arquivo de texto (download), no layout de largura fixa. */
-    @GetMapping(value = "/afd/arquivo", produces = MediaType.TEXT_PLAIN_VALUE)
-    public ResponseEntity<String> afdArquivo(
+    /**
+     * AFD para download. O nome do arquivo e a codificação são exigidos pelo leiaute
+     * (AFD + nº INPI + CNPJ + REP_P, texto em ISO 8859-1).
+     */
+    @GetMapping("/afd/arquivo")
+    public ResponseEntity<byte[]> afdArquivo(
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM") YearMonth competencia) {
-        AfdResponse afd = afdService.gerar(competencia);
-        return ResponseEntity.ok()
-                .header("Content-Disposition", "attachment; filename=\"AFD-" + competencia + ".txt\"")
-                .contentType(MediaType.TEXT_PLAIN)
-                .body(afd.conteudo());
+        return arquivoDoRep(afdService.gerar(competencia).conteudo(), afdService.nomeDoArquivo());
     }
 
     @GetMapping("/aej")
     public AfdResponse aej(@RequestParam @DateTimeFormat(pattern = "yyyy-MM") YearMonth competencia) {
-        return afdService.gerarAej(competencia);
+        return aejService.gerar(competencia);
+    }
+
+    /** AEJ para download (saída do Programa de Tratamento de Registro de Ponto). */
+    @GetMapping("/aej/arquivo")
+    public ResponseEntity<byte[]> aejArquivo(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM") YearMonth competencia) {
+        return arquivoDoRep(aejService.gerar(competencia).conteudo(), aejService.nomeDoArquivo());
+    }
+
+    /** Entrega o arquivo em ISO 8859-1 — gravar em UTF-8 invalidaria o CRC e os acentos. */
+    private static ResponseEntity<byte[]> arquivoDoRep(String conteudo, String nome) {
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=\"" + nome + "\"")
+                .header("Content-Type", "text/plain; charset=ISO-8859-1")
+                .body(conteudo.getBytes(CampoLeiaute.CHARSET));
     }
 
     /** Espelho de ponto mensal em PDF (download). */

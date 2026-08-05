@@ -44,7 +44,13 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+// O REP-P precisa se identificar no AFD/AEJ (art. 91); sem 'rep.inpi' a emissão é recusada.
+@SpringBootTest(properties = {
+        "rep.inpi=51202300012345",
+        "rep.desenvolvedor.cnpj=99888777000166",
+        "rep.desenvolvedor.nome=Fornecedor de Software LTDA",
+        "rep.desenvolvedor.email=suporte@fornecedor.com.br"
+})
 @AutoConfigureEmbeddedDatabase(
         provider = AutoConfigureEmbeddedDatabase.DatabaseProvider.ZONKY,
         refresh = AutoConfigureEmbeddedDatabase.RefreshMode.AFTER_EACH_TEST_METHOD)
@@ -70,6 +76,8 @@ class ConformidadeTest {
     private RelatorioService relatorioService;
     @Autowired
     private AfdService afdService;
+    @Autowired
+    private br.gov.ponto.relatorios.AejService aejService;
     @Autowired
     private br.gov.ponto.relatorios.PdfEspelhoService pdfEspelhoService;
     @Autowired
@@ -143,23 +151,67 @@ class ConformidadeTest {
         assertThat(afd.hashSha256()).isNotBlank();
         assertThat(afd.conteudo()).contains("12345678901");
 
-        // Layout largura-fixa: cabeçalho (tipo 1), 2 marcações (tipo 3) e trailer (tipo 9).
-        String[] linhas = afd.conteudo().split("\n");
-        assertThat(linhas[0]).startsWith("0000000001");           // NSR(9 zeros) + tipo "1"
-        assertThat(linhas[linhas.length - 1]).startsWith("9999999999"); // NSR(9 noves) + tipo "9"
+        // Leiaute vigente (v004): linhas em CRLF, cabeçalho tipo 1 com 302 caracteres.
+        String[] linhas = afd.conteudo().split("\r\n");
+        assertThat(linhas[0]).startsWith("0000000001").hasSize(302);
+        // As duas marcações vão no tipo "7" (REP-P) — o tipo "3" é de REP-C/REP-A.
         assertThat(java.util.Arrays.stream(linhas)
-                .filter(l -> l.length() > 9 && l.charAt(9) == '3').count()).isEqualTo(2);
-        // Empregado (tipo 5): 1 registro (a servidora Joana), com o CPF no conteúdo.
+                .filter(l -> l.length() > 9 && l.charAt(9) == '7').count()).isEqualTo(2);
         assertThat(java.util.Arrays.stream(linhas)
-                .filter(l -> l.length() > 9 && l.charAt(9) == '5').count()).isEqualTo(1);
+                .filter(l -> l.length() > 9 && l.charAt(9) == '3').count())
+                .as("REP-P nao emite marcacao no tipo 3").isZero();
+        // O AFD cobre um período: a inclusão da servidora aconteceu HOJE, não na competência
+        // apurada, então não entra neste arquivo (ela estará no AFD do mês da inclusão).
+        assertThat(java.util.Arrays.stream(linhas)
+                .filter(l -> l.length() > 9 && l.charAt(9) == '5').count()).isZero();
+        // Trailer (64 ch, "9" na última posição) + linha de assinatura (100 ch).
+        assertThat(linhas[linhas.length - 2]).hasSize(64).startsWith("999999999").endsWith("9");
+        assertThat(linhas[linhas.length - 1].strip()).isEqualTo("ASSINATURA_DIGITAL_EM_ARQUIVO_P7S");
 
-        AfdResponse aej = afdService.gerarAej(COMPETENCIA);
-        assertThat(aej.totalRegistros()).isGreaterThanOrEqualTo(1);
+        AfdResponse aej = aejService.gerar(COMPETENCIA);
+        assertThat(aej.totalRegistros()).isEqualTo(2);
         assertThat(aej.hashSha256()).isNotBlank();
+        String[] linhasAej = aej.conteudo().split("\r\n");
+        assertThat(linhasAej[0]).startsWith("01|").endsWith("|002"); // cabeçalho na versão vigente
+        assertThat(linhasAej[1]).startsWith("02|1|3|");              // tpRep 3 = REP-P
+        assertThat(java.util.Arrays.stream(linhasAej)
+                .filter(l -> l.startsWith("05|")).count()).isEqualTo(2);
+        assertThat(linhasAej[linhasAej.length - 2]).startsWith("99|");
 
         var conf = relatorioService.conformidadeIn008(COMPETENCIA);
         assertThat(conf.totalServidores()).isEqualTo(1);
         assertThat(conf.totalRegistros()).isEqualTo(2);
+    }
+
+    @Test
+    void inclusaoDeServidorViraRegistroTipo5NoAfdDoMesEmQueOcorreu() {
+        // A servidora foi cadastrada no setUp (agora), então o evento do ARP cai no mês corrente.
+        String[] linhas = afdService.gerar(YearMonth.now()).conteudo().split("\r\n");
+
+        var empregados = java.util.Arrays.stream(linhas)
+                .filter(l -> l.length() > 9 && l.charAt(9) == '5').toList();
+        assertThat(empregados).hasSize(1);
+
+        String registro = empregados.get(0);
+        assertThat(registro).hasSize(118);
+        assertThat(registro.charAt(34)).as("operação de inclusão").isEqualTo('I');
+        assertThat(registro.substring(35, 47)).isEqualTo("012345678901"); // CPF em 12 posições
+        assertThat(registro.substring(47, 99)).startsWith("Joana");
+        assertThat(registro.substring(114, 118)).matches("[0-9A-F]{4}");  // CRC-16
+    }
+
+    @Test
+    void nsrEUnicoEntreMarcacoesEEventosDoRep() {
+        // Anexo IX: a numeração é sequencial e ÚNICA por ente, contando TODAS as operações do REP.
+        // Se empregados e marcações usassem sequências separadas, o AFD sairia com NSR repetido.
+        java.util.List<String> nsrs = new java.util.ArrayList<>();
+        for (String linha : afdService.gerar(YearMonth.now()).conteudo().split("\r\n")) {
+            char tipo = linha.length() > 9 ? linha.charAt(9) : ' ';
+            if (tipo == '5' || tipo == '6' || tipo == '7') {
+                nsrs.add(linha.substring(0, 9));
+            }
+        }
+        assertThat(nsrs).doesNotHaveDuplicates();
     }
 
     @Test

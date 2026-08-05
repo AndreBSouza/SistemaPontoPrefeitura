@@ -11,11 +11,13 @@ create table evento_rep (
     nsr              bigint      not null,
     tipo_registro    smallint    not null,          -- 5 = empregado, 6 = evento sensível
     data_hora        timestamptz not null,          -- data e hora da gravação do registro
-    operacao         char(1),                       -- tipo 5: I (inclusão), A (alteração), E (exclusão)
+    -- varchar (não char): char(n) vira "bpchar" no Postgres e a validação de schema do Hibernate
+    -- rejeita, porque para String ela espera varchar.
+    operacao         varchar(1),                    -- tipo 5: I (inclusão), A (alteração), E (exclusão)
     cpf              varchar(14),                   -- tipo 5
     nome             varchar(150),                  -- tipo 5
     cpf_responsavel  varchar(14),                   -- tipo 5
-    codigo_evento    char(2),                       -- tipo 6: 02, 07, 08 (aplicáveis ao REP-P)
+    codigo_evento    varchar(2),                    -- tipo 6: 02, 07, 08 (aplicáveis ao REP-P)
     constraint ck_evento_rep_tipo check (tipo_registro in (5, 6)),
     constraint uq_evento_rep_nsr unique (tenant_id, nsr)
 );

@@ -40,12 +40,12 @@ cd web && npm run build && npm test
 ```bash
 cd mobile && flutter analyze
 ```
-**Estado atual: backend 281/281 · web build + vitest 10/10 · flutter analyze limpo.**
+**Estado atual: backend 283/283 · web build + vitest 10/10 · flutter analyze limpo.**
 
 > ⚠️ `mvn -q` **esconde erro de compilação** e deixa relatório do surefire velho — sempre confira o
 > exit code real do Maven, não o do shell.
 
-## 3. 🔴 EM ANDAMENTO — AFD e AEJ conformes (é aqui que você para e retoma)
+## 3. ✅ CONCLUÍDO — AFD e AEJ conformes
 
 ### Contexto
 O AFD que o sistema gerava estava **estruturalmente errado** (formato herdado da Portaria 1510/2009).
@@ -81,51 +81,41 @@ Também já criada: **`V48__evento_rep.sql`** — tabela ARP para as operações
 marcação (inclusão de empregado = tipo 5, eventos sensíveis = tipo 6), com NSR vindo da **mesma
 sequência** das marcações (exigência do Anexo IX) e RLS.
 
-### ⛔ FALTA FAZER (retome exatamente por aqui)
+### ✅ Também já feito (ligação com os dados reais)
 
-1. **Entidade + repositório do `evento_rep`** (a migration V48 já existe, mas nada a usa ainda).
-   - `EventoRep` (tenantId, nsr, tipoRegistro 5|6, dataHora, operacao, cpf, nome, cpfResponsavel, codigoEvento).
-   - Gravar o evento tipo 5 ao criar/alterar/excluir servidor (`cadastro/ServidorService`), pegando
-     o NSR de `registro.NsrGenerator.next(tenantId)` — **é a mesma sequência das marcações**.
+- **ARP** (`registro/EventoRep` + repositório + `EventoRepService`): grava as operações do REP que
+  não são marcação. `ServidorService.criar` gera o evento de inclusão (tipo 5). O NSR sai do
+  **mesmo `NsrGenerator`** das marcações — sequência única por ente, como o Anexo IX exige.
+- **`AfdService` reescrito**: junta eventos do ARP (tipos 5/6) com marcações (tipo 7) e emite
+  **ordenado por NSR**. Recusa a emissão sem CNPJ do ente ou sem nº do INPI.
+- **`AejService` novo**: cabeçalho 01 · REP-P 02 · vínculos 03 · horários contratuais 04 ·
+  marcações 05 (correção aprovada sai como `fonteMarc="I"` com motivo) · matrícula eSocial 06
+  (só quem tem mais de um vínculo) · faltas e banco de horas 07 · PTRP 08 · trailer 99.
+- **Endpoints**: `GET /api/relatorios/afd/arquivo` e `/aej/arquivo` baixam com o **nome exigido**
+  (`AFD<inpi><cnpj>REP_P.txt`) e em **ISO-8859-1**.
+- **Configuração nova** em `application.yml` (dados do FORNECEDOR, não do ente):
+  ```yaml
+  rep:
+    inpi: ${REP_INPI:}            # nº de registro do REP-P no INPI (art. 91)
+    desenvolvedor: { cnpj: ${REP_DEV_CNPJ:}, nome: ${REP_DEV_NOME:}, email: ${REP_DEV_EMAIL:} }
+  ptrp:
+    nome: ${PTRP_NOME:Ponto Municipal}
+    versao: ${PTRP_VERSAO:1.0.0}
+  ```
 
-2. **Reescrever `relatorios/AfdService.gerar()`** para usar o `MontadorAfd`:
-   - juntar `evento_rep` (tipos 5/6) + `registro_ponto` (tipo 7) do período e **ordenar por NSR**;
-   - coletor por origem: `MOBILE`→`APLICATIVO_MOBILE(01)`, `WEB`→`BROWSER(02)`,
-     `TOTEM`→`DISPOSITIVO_ELETRONICO(04)`, `AJUSTE`→`OUTRO(05)`;
-   - campo 7 (on-line/off-line) vem de `RegistroPonto.isOffline()`.
+### ⛔ O que ainda falta neste tema
 
-3. **Criar `AejService`** (é a saída do PTRP, não do REP) usando o `MontadorAej`:
-   - 01 cabeçalho · 02 REP-P (nº INPI) · 03 vínculos · 04 horários (de `Jornada`+`JornadaHorario`,
-     `durJornada` em **minutos**) · 05 marcações (`fonteMarc`: origem `AJUSTE` → `"I"` **com motivo
-     obrigatório**; demais → `"O"`) · 06 matrícula eSocial (só quem tem >1 vínculo) ·
-     07 ausências e banco de horas (de `AusenciaProgramada` e `BancoHorasLancamento`) ·
-     08 identificação do PTRP · 99 trailer.
-   - `tpMarc`: `ENTRADA`/`INTERVALO_FIM` → `"E"`; `SAIDA`/`INTERVALO_INICIO` → `"S"`.
-
-4. **Configuração nova** (dados do fornecedor, não do ente) em `application.yml`:
-   ```yaml
-   rep:
-     inpi: ${REP_INPI:}                 # nº de registro do REP-P no INPI (art. 91) — 17 dígitos
-     desenvolvedor:
-       cnpj: ${REP_DEV_CNPJ:}
-       nome: ${REP_DEV_NOME:}
-       email: ${REP_DEV_EMAIL:}
-   ptrp:
-     nome: Ponto Municipal
-     versao: ${PTRP_VERSAO:1.0.0}
-   ```
-   O AFD **deve recusar a emissão** sem o nº do INPI (como já recusa sem CNPJ do ente).
-
-5. **Endpoints**: `GET /api/relatorios/afd/arquivo` deve baixar com o **nome exigido**
-   (`MontadorAfd.nomeDoArquivo(...)` → `AFD<inpi><cnpj>REP_P.txt`) e em **ISO-8859-1**.
-   Criar o equivalente para o AEJ.
-
-6. **Comprovante do trabalhador (art. 79, VIII)**: deve exibir o **hash SHA-256 da marcação**.
-   `MontadorAfd.marcacao(...)` já devolve esse hash — falta persistir/expor.
-   Atenção: o hash atual em `registro_ponto.hash` é a `CadeiaHash` INTERNA (fórmula diferente da
-   oficial); são coisas distintas, não confundir.
-
-7. **Apagar o método antigo** `AfdService.gerarAej()` (gera formato ad-hoc inválido).
+1. **Comprovante do trabalhador com o hash (art. 79, VIII)**: o comprovante do REP-P deve exibir o
+   **SHA-256 da marcação**. `MontadorAfd.marcacao(...)` já devolve esse hash — falta persistir no
+   momento da batida e expor no comprovante.
+   ⚠️ Não confundir com `registro_ponto.hash`, que é a `CadeiaHash` **interna** (outra fórmula).
+2. **Homologar o arquivo** no programa de tratamento do MTP com dados reais, depois que o número do
+   INPI existir. Dois pontos são interpretação nossa e devem ser conferidos na homologação:
+   (a) o CRC-16 cobre o registro **sem** o próprio campo de CRC; (b) o hash do tipo 7 concatena os
+   campos 1..7 já formatados **mais** o hash anterior, sem separador.
+3. **Retroatividade**: servidores cadastrados ANTES desta versão não têm evento de inclusão no ARP,
+   então não aparecem como registro tipo 5. Se a fiscalização exigir, é preciso um backfill —
+   decida com cuidado, porque os NSRs teriam de ser alocados fora de ordem cronológica.
 
 ## 4. Pendências que NÃO são código (providências suas)
 

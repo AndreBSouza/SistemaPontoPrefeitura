@@ -8,6 +8,7 @@ import br.gov.ponto.cadastro.domain.Vinculo;
 import br.gov.ponto.common.error.ConflitoException;
 import br.gov.ponto.common.error.RecursoNaoEncontradoException;
 import br.gov.ponto.common.tenant.TenantContext;
+import br.gov.ponto.registro.EventoRepService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,10 +22,13 @@ public class ServidorService {
 
     private final ServidorRepository servidorRepository;
     private final VinculoRepository vinculoRepository;
+    private final EventoRepService eventoRepService;
 
-    public ServidorService(ServidorRepository servidorRepository, VinculoRepository vinculoRepository) {
+    public ServidorService(ServidorRepository servidorRepository, VinculoRepository vinculoRepository,
+                           EventoRepService eventoRepService) {
         this.servidorRepository = servidorRepository;
         this.vinculoRepository = vinculoRepository;
+        this.eventoRepService = eventoRepService;
     }
 
     @Transactional
@@ -49,6 +53,8 @@ public class ServidorService {
                 vinculos.add(vinculoRepository.save(vinculo));
             }
         }
+        // Inclusão de empregado no REP: vira o registro tipo "5" do AFD (Anexo IX, item 6.3).
+        eventoRepService.empregadoIncluido(servidor.getCpf(), servidor.getNome(), null);
         return ServidorResponse.from(servidor, vinculos);
     }
 

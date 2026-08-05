@@ -61,6 +61,21 @@ ponto:
   crypto:
     secret: ${PONTO_CRYPTO_SECRET:dev-secret-ponto-municipal-trocar-em-producao}
 
+# Identificacao do REP-P e do seu DESENVOLVEDOR (dados do fornecedor do software, nao do ente).
+# O numero de registro no INPI e exigido pelo art. 91 da Portaria MTP 671/2021 e vai DENTRO do AFD
+# (cabecalho, campo 7) e do AEJ (registro "02"): sem ele a emissao e RECUSADA, de proposito.
+rep:
+  inpi: ${REP_INPI:}
+  desenvolvedor:
+    cnpj: ${REP_DEV_CNPJ:}
+    nome: ${REP_DEV_NOME:}
+    email: ${REP_DEV_EMAIL:}
+
+# Programa de Tratamento de Registro de Ponto (art. 82) — identificado no registro "08" do AEJ.
+ptrp:
+  nome: ${PTRP_NOME:Ponto Municipal}
+  versao: ${PTRP_VERSAO:1.0.0}
+
 # Assinatura digital ICP-Brasil (CAdES/PKCS#7) do AFD. ATIVE definindo o caminho da keystore .p12
 # do e-CNPJ do ente — sem isso, o AFD sai só com hash (o bean no-op prevalece; gating intacto).
 # assinatura:

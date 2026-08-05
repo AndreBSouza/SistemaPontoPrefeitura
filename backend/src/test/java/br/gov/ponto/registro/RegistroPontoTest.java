@@ -69,8 +69,10 @@ class RegistroPontoTest {
         var c2 = registroService.registrar(new RegistrarPontoRequest(
                 vinculoId, TipoMarcacao.SAIDA, OrigemRegistro.MOBILE, null, null, null, false, "k2"));
 
-        assertThat(c1.nsr()).isEqualTo(1L);
-        assertThat(c2.nsr()).isEqualTo(2L);
+        // A sequência de NSR é ÚNICA por ente e cobre TODAS as operações do REP (Anexo IX): o
+        // cadastro do servidor no setUp já consumiu o NSR 1, então as marcações vêm depois dele.
+        assertThat(c2.nsr()).isEqualTo(c1.nsr() + 1);
+        assertThat(c1.nsr()).isGreaterThan(0L);
     }
 
     @Test
@@ -100,8 +102,9 @@ class RegistroPontoTest {
         assertThat(b4.tipo()).isEqualTo(TipoMarcacao.SAIDA);
         assertThat(b5.tipo()).isEqualTo(TipoMarcacao.ENTRADA);
         assertThat(b1.mensagem()).startsWith("Entrada registrada às ");
-        assertThat(b1.nsr()).isEqualTo(1L);
-        assertThat(b4.nsr()).isEqualTo(4L);
+        // NSR incrementa de 1 em 1 (a sequência é compartilhada com os eventos do REP, então o
+        // valor inicial depende do que já foi gravado — o que importa é a continuidade).
+        assertThat(b4.nsr()).isEqualTo(b1.nsr() + 3);
     }
 
     @Test
