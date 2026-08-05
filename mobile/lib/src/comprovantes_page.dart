@@ -101,10 +101,27 @@ class _ComprovantesPageState extends State<ComprovantesPage> {
                                     : item.tipo,
                                 style: theme.textTheme.titleMedium,
                               ),
-                              subtitle: Text(
-                                'NSR ${item.nsr}',
-                                style: theme.textTheme.bodyMedium,
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('NSR ${item.nsr}', style: theme.textTheme.bodyMedium),
+                                  // Código hash exigido no comprovante do REP-P (art. 79, VIII).
+                                  // É o mesmo valor que consta no AFD entregue à fiscalização,
+                                  // então serve ao servidor como prova da marcação.
+                                  if (item.codigoHash.isNotEmpty)
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 4),
+                                      child: Text(
+                                        'Código: ${item.codigoHash.substring(0, 16)}…',
+                                        style: theme.textTheme.bodySmall?.copyWith(
+                                          fontFamily: 'monospace',
+                                          color: theme.colorScheme.onSurfaceVariant,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
+                              isThreeLine: item.codigoHash.isNotEmpty,
                               trailing: Text(
                                 item.dataLocal, // data no fuso do município (não o Instant UTC)
                                 style: theme.textTheme.bodySmall,

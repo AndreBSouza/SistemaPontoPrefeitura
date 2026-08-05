@@ -16,6 +16,8 @@ import br.gov.ponto.registro.domain.CadeiaHash;
 import br.gov.ponto.registro.domain.DeducaoBatida;
 import br.gov.ponto.registro.domain.OrigemRegistro;
 import br.gov.ponto.registro.domain.RegistroPonto;
+import br.gov.ponto.relatorios.rep.HashMarcacaoRep;
+import br.gov.ponto.relatorios.rep.MontadorAfd;
 import br.gov.ponto.registro.domain.TipoMarcacao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,19 +38,22 @@ public class RegistroService {
     private final GeofenceLocalService geofenceLocalService;
     private final NsrGenerator nsrGenerator;
     private final AuditoriaService auditoriaService;
+    private final br.gov.ponto.cadastro.ServidorRepository servidorRepository;
 
     public RegistroService(RegistroPontoRepository registroRepository,
                            VinculoRepository vinculoRepository,
                            RegrasPontoService regrasPontoService,
                            GeofenceLocalService geofenceLocalService,
                            NsrGenerator nsrGenerator,
-                           AuditoriaService auditoriaService) {
+                           AuditoriaService auditoriaService,
+                           br.gov.ponto.cadastro.ServidorRepository servidorRepository) {
         this.registroRepository = registroRepository;
         this.vinculoRepository = vinculoRepository;
         this.regrasPontoService = regrasPontoService;
         this.geofenceLocalService = geofenceLocalService;
         this.nsrGenerator = nsrGenerator;
         this.auditoriaService = auditoriaService;
+        this.servidorRepository = servidorRepository;
     }
 
     /** Registro com tipo informado pelo cliente (web/totem/sync offline legado). */
@@ -125,6 +130,10 @@ public class RegistroService {
         RegistroPonto registro = new RegistroPonto(tenantId, vinculoId, nsr, tipo, OrigemRegistro.AJUSTE,
                 dataHoraServidor, dataHoraServidor, null, null, false, idempotencyKey, false);
         registro.definirCadeia(hashAnterior, hash);
+        // Hash oficial do REP-P (art. 79, VIII): o MESMO valor vai para o comprovante do
+        // trabalhador e para o campo 8 do registro tipo "7" do AFD. Calculado agora e nunca
+        // recalculado — se comprovante e AFD divergissem, a fiscalizacao teria razao em recusar.
+        registro.definirHashRep(hashRepDe(tenantId, vinculoId, registro));
         registro = registroRepository.save(registro);
         auditoriaService.registrar("CORRECAO_MARCACAO", "registro", registro.getId().toString(),
                 "NSR " + nsr + " " + tipo + " em " + dataHoraServidor
@@ -174,10 +183,37 @@ public class RegistroService {
                 tenantId, vinculoId, nsr, tipo, origem,
                 agora, dataHoraDispositivo, latitude, longitude, offline, idempotencyKey, foraDaCerca);
         registro.definirCadeia(hashAnterior, hash);
+        // Hash oficial do REP-P (art. 79, VIII): o MESMO valor vai para o comprovante do
+        // trabalhador e para o campo 8 do registro tipo "7" do AFD. Calculado agora e nunca
+        // recalculado — se comprovante e AFD divergissem, a fiscalizacao teria razao em recusar.
+        registro.definirHashRep(hashRepDe(tenantId, vinculoId, registro));
         registro = registroRepository.save(registro);
         auditoriaService.registrar("REGISTRO_PONTO", "registro", registro.getId().toString(),
                 "NSR " + registro.getNsr() + " " + registro.getTipo() + auditSuffix);
         return registro;
+    }
+
+    /** Calcula o hash oficial da marcacao, encadeando com o hash da marcacao anterior do ente. */
+    private String hashRepDe(UUID tenantId, UUID vinculoId, RegistroPonto registro) {
+        String cpf = vinculoRepository.findByIdAndTenantId(vinculoId, tenantId)
+                .flatMap(v -> servidorRepository.findByIdAndTenantId(v.getServidorId(), tenantId))
+                .map(br.gov.ponto.cadastro.domain.Servidor::getCpf)
+                .orElse("");
+        String hashRepAnterior = registroRepository.findTopByTenantIdOrderByNsrDesc(tenantId)
+                .map(RegistroPonto::getHashRep).orElse("");
+        return HashMarcacaoRep.calcular(registro.getNsr(), registro.instanteDaMarcacao(), cpf,
+                registro.instanteDaGravacao(), coletorDe(registro.getOrigem()), registro.isOffline(),
+                hashRepAnterior == null ? "" : hashRepAnterior);
+    }
+
+    /** Identificador do coletor da marcacao (campo 6 do registro tipo "7"). */
+    private static MontadorAfd.Coletor coletorDe(OrigemRegistro origem) {
+        return switch (origem) {
+            case MOBILE -> MontadorAfd.Coletor.APLICATIVO_MOBILE;
+            case WEB -> MontadorAfd.Coletor.BROWSER;
+            case TOTEM -> MontadorAfd.Coletor.DISPOSITIVO_ELETRONICO;
+            case AJUSTE -> MontadorAfd.Coletor.OUTRO;
+        };
     }
 
     private void exigirVinculo(UUID vinculoId, UUID tenantId) {

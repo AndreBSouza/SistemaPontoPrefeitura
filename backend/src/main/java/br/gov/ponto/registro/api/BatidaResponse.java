@@ -25,7 +25,8 @@ public record BatidaResponse(
         String horaLocal,
         String mensagem,
         boolean offline,
-        boolean foraDaCerca
+        boolean foraDaCerca,
+        String codigoHash
 ) {
 
     private static final DateTimeFormatter HORA = DateTimeFormatter.ofPattern("HH:mm");
@@ -35,7 +36,7 @@ public record BatidaResponse(
         return new BatidaResponse(
                 r.getId(), r.getNsr(), r.getVinculoId(), r.getTipo(), r.getTipo().rotulo(),
                 r.getOrigem(), r.getDataHoraServidor(), hora, mensagem(r.getTipo(), hora), r.isOffline(),
-                r.isForaDaCerca());
+                r.isForaDaCerca(), r.getHashRep());
     }
 
     private static String mensagem(TipoMarcacao tipo, String hora) {

@@ -24,4 +24,7 @@ public interface RegistroPontoRepository extends JpaRepository<RegistroPonto, UU
 
     /** Último registro do tenant (maior NSR) — usado para encadear o hash de integridade. */
     Optional<RegistroPonto> findTopByTenantIdOrderByNsrDesc(UUID tenantId);
+
+    /** Marcacao pelo NSR (o numero que identifica o registro no comprovante e no AFD). */
+    Optional<RegistroPonto> findByTenantIdAndNsr(UUID tenantId, long nsr);
 }

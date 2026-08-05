@@ -14,6 +14,9 @@ import java.util.UUID;
  * Comprovante de registro. Inclui a localização da batida (latitude/longitude) e o indicador
  * {@code foraDaCerca} para o administrador conferir onde o ponto foi registrado.
  *
+ * <p>Inclui o {@code codigoHash} (SHA-256) exigido no comprovante do REP-P pelo art. 79, VIII
+ * da Portaria MTP 671/2021 — é o MESMO valor que sai no campo 8 do registro tipo "7" do AFD.</p>
+ *
  * <p>Traz também {@code rotuloTipo} e {@code horaLocal} (mesmo padrão do {@code BatidaResponse}):
  * o app exibe a lista "Meus comprovantes" com esses campos — sem eles, mostrava o enum cru e "--"
  * no lugar da hora, e a data do Instant UTC podia cair no dia seguinte para batidas noturnas.</p>
@@ -31,7 +34,8 @@ public record ComprovanteResponse(
         boolean offline,
         BigDecimal latitude,
         BigDecimal longitude,
-        boolean foraDaCerca
+        boolean foraDaCerca,
+        String codigoHash
 ) {
 
     private static final DateTimeFormatter HORA = DateTimeFormatter.ofPattern("HH:mm");
@@ -42,6 +46,6 @@ public record ComprovanteResponse(
         return new ComprovanteResponse(r.getId(), r.getNsr(), r.getVinculoId(),
                 r.getTipo(), r.getTipo().rotulo(), r.getOrigem(), r.getDataHoraServidor(),
                 HORA.format(local), DATA.format(local), r.isOffline(),
-                r.getLatitude(), r.getLongitude(), r.isForaDaCerca());
+                r.getLatitude(), r.getLongitude(), r.isForaDaCerca(), r.getHashRep());
     }
 }

@@ -151,15 +151,22 @@ public class MontadorAfd {
      */
     public String marcacao(long nsr, Instant dataHoraMarcacao, String cpf, Instant dataHoraGravacao,
                            Coletor coletor, boolean offline) {
-        String c1 = n(nsr, 9);
-        String c2 = "7";
-        String c3 = dh(dataHoraMarcacao);
-        String c4 = n(cpf, 12);
-        String c5 = dh(dataHoraGravacao);
-        String c6 = coletor.codigo();
-        String c7 = offline ? "1" : "0";
-        String hash = sha256(c1 + c2 + c3 + c4 + c5 + c6 + c7 + hashAnterior);
-        linha(c1 + c2 + c3 + c4 + c5 + c6 + c7 + a(hash, 64));
+        return marcacao(nsr, dataHoraMarcacao, cpf, dataHoraGravacao, coletor, offline, null);
+    }
+
+    /**
+     * Igual ao anterior, mas usando um hash JÁ CALCULADO na hora da batida (o que foi mostrado ao
+     * trabalhador no comprovante, art. 79, VIII). Passar o hash gravado garante que comprovante e
+     * AFD exibam exatamente o mesmo valor. Com {@code null}, calcula encadeando dentro do arquivo.
+     */
+    public String marcacao(long nsr, Instant dataHoraMarcacao, String cpf, Instant dataHoraGravacao,
+                           Coletor coletor, boolean offline, String hashGravado) {
+        String hash = (hashGravado == null || hashGravado.isBlank())
+                ? HashMarcacaoRep.calcular(nsr, dataHoraMarcacao, cpf, dataHoraGravacao, coletor,
+                        offline, hashAnterior)
+                : hashGravado;
+        linha(n(nsr, 9) + "7" + dh(dataHoraMarcacao) + n(cpf, 12) + dh(dataHoraGravacao)
+                + coletor.codigo() + (offline ? "1" : "0") + a(hash, 64));
         hashAnterior = hash;
         qtdTipo7++;
         return hash;

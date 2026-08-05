@@ -65,6 +65,14 @@ public class RegistroPonto {
     @Column(name = "hash_anterior", length = 64)
     private String hashAnterior;
 
+    /**
+     * SHA-256 da marcação conforme o leiaute do AFD (campo 8 do registro tipo "7"), mostrado ao
+     * trabalhador no comprovante (art. 79, VIII). É outro cálculo — e outro propósito — em relação
+     * ao {@link #hash}, que é a cadeia de integridade interna do sistema.
+     */
+    @Column(name = "hash_rep", length = 64)
+    private String hashRep;
+
     @Column(name = "idempotency_key", nullable = false, length = 80)
     private String idempotencyKey;
 
@@ -166,6 +174,31 @@ public class RegistroPonto {
     public void definirCadeia(String hashAnterior, String hash) {
         this.hashAnterior = hashAnterior;
         this.hash = hash;
+    }
+
+    /** Hash oficial da marcação (AFD/comprovante). Definido na batida e nunca alterado depois. */
+    public void definirHashRep(String hashRep) {
+        this.hashRep = hashRep;
+    }
+
+    /**
+     * Instante da MARCAÇÃO (campo 3 do registro tipo "7"), distinto do instante da gravação.
+     *
+     * <p>Numa batida off-line a marcação ocorreu no aparelho e só depois foi transmitida, então
+     * vale a hora do dispositivo. On-line, vale a hora do servidor — o Anexo IX exige que o REP
+     * obtenha a data/hora "de forma confiável", e o relógio do aparelho não é confiável.</p>
+     */
+    public Instant instanteDaMarcacao() {
+        return offline && dataHoraDispositivo != null ? dataHoraDispositivo : dataHoraServidor;
+    }
+
+    /** Instante da GRAVAÇÃO do registro no REP (campo 5 do registro tipo "7"). */
+    public Instant instanteDaGravacao() {
+        return dataHoraServidor;
+    }
+
+    public String getHashRep() {
+        return hashRep;
     }
 
     public String getIdempotencyKey() {

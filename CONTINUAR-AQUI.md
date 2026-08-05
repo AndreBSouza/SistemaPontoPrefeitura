@@ -40,7 +40,7 @@ cd web && npm run build && npm test
 ```bash
 cd mobile && flutter analyze
 ```
-**Estado atual: backend 283/283 · web build + vitest 10/10 · flutter analyze limpo.**
+**Estado atual: backend 287/287 · web build + vitest 10/10 · flutter analyze limpo.**
 
 > ⚠️ `mvn -q` **esconde erro de compilação** e deixa relatório do surefire velho — sempre confira o
 > exit code real do Maven, não o do shell.
@@ -103,19 +103,31 @@ sequência** das marcações (exigência do Anexo IX) e RLS.
     versao: ${PTRP_VERSAO:1.0.0}
   ```
 
+### ✅ Comprovante do trabalhador com o hash (art. 79) — feito
+
+- `HashMarcacaoRep`: a fórmula do hash mora num lugar só, usada pela batida E pelo AFD.
+- Migration **V49** adiciona `registro_ponto.hash_rep`; o hash é calculado **na batida** e nunca
+  recalculado — garante que comprovante e AFD mostrem o mesmo valor (teste cobre exatamente isso).
+  ⚠️ Não confundir com `registro_ponto.hash`, que é a `CadeiaHash` **interna** (outra fórmula).
+- `ComprovanteRepService` + `GET /api/me/comprovantes/{nsr}` entregam o comprovante com os 9
+  incisos do art. 79; o app exibe o código na lista de comprovantes.
+- `RegistroPonto.instanteDaMarcacao()/instanteDaGravacao()`: os campos 3 e 5 do registro tipo 7 são
+  instantes distintos — numa batida off-line a marcação é a hora do aparelho e a gravação é a do
+  servidor.
+
 ### ⛔ O que ainda falta neste tema
 
-1. **Comprovante do trabalhador com o hash (art. 79, VIII)**: o comprovante do REP-P deve exibir o
-   **SHA-256 da marcação**. `MontadorAfd.marcacao(...)` já devolve esse hash — falta persistir no
-   momento da batida e expor no comprovante.
-   ⚠️ Não confundir com `registro_ponto.hash`, que é a `CadeiaHash` **interna** (outra fórmula).
+1. **Comprovante em PDF assinado** (art. 80, I): hoje o comprovante é entregue como JSON. A norma
+   exige PDF com assinatura eletrônica quando o formato for eletrônico. O `PdfEspelhoService`
+   (OpenPDF) já é o molde a seguir, e o `AssinaturaService` já assina.
 2. **Homologar o arquivo** no programa de tratamento do MTP com dados reais, depois que o número do
    INPI existir. Dois pontos são interpretação nossa e devem ser conferidos na homologação:
    (a) o CRC-16 cobre o registro **sem** o próprio campo de CRC; (b) o hash do tipo 7 concatena os
    campos 1..7 já formatados **mais** o hash anterior, sem separador.
-3. **Retroatividade**: servidores cadastrados ANTES desta versão não têm evento de inclusão no ARP,
-   então não aparecem como registro tipo 5. Se a fiscalização exigir, é preciso um backfill —
-   decida com cuidado, porque os NSRs teriam de ser alocados fora de ordem cronológica.
+3. **Retroatividade**: servidores cadastrados ANTES desta versão não têm evento de inclusão no ARP
+   (não aparecem como tipo 5) e marcações antigas não têm `hash_rep` (o AFD as encadeia na
+   geração). Se a fiscalização exigir histórico, decida o backfill com cuidado — os NSRs teriam de
+   ser alocados fora de ordem cronológica.
 
 ## 4. Pendências que NÃO são código (providências suas)
 

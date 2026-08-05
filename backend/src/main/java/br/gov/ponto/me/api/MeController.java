@@ -19,6 +19,7 @@ import br.gov.ponto.ia.api.PerguntaRequest;
 import br.gov.ponto.jornada.api.HorarioResponse;
 import br.gov.ponto.lgpd.api.ExportacaoTitularResponse;
 import br.gov.ponto.me.CarteiraService;
+import br.gov.ponto.me.ComprovanteRepService;
 import br.gov.ponto.me.MeService;
 import br.gov.ponto.relatorios.PdfEspelhoService;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,6 +54,7 @@ import java.util.List;
 public class MeController {
 
     private final MeService meService;
+    private final ComprovanteRepService comprovanteRepService;
     private final BrandingService brandingService;
     private final PdfEspelhoService pdfEspelhoService;
     private final CarteiraService carteiraService;
@@ -66,8 +68,10 @@ public class MeController {
                         br.gov.ponto.me.TrilhaService trilhaService,
                         br.gov.ponto.me.GestorService gestorService,
                         AssistenteService assistenteService,
-                        AtestadoOcrService atestadoOcrService) {
+                        AtestadoOcrService atestadoOcrService,
+                        ComprovanteRepService comprovanteRepService) {
         this.meService = meService;
+        this.comprovanteRepService = comprovanteRepService;
         this.brandingService = brandingService;
         this.pdfEspelhoService = pdfEspelhoService;
         this.carteiraService = carteiraService;
@@ -134,6 +138,16 @@ public class MeController {
     @GetMapping("/comprovantes")
     public List<ComprovanteResponse> comprovantes(@AuthenticationPrincipal DispositivoPrincipal me) {
         return meService.comprovantes(me.vinculoId());
+    }
+
+    /**
+     * Comprovante de Registro de Ponto do Trabalhador de uma marcacao (art. 79), com o codigo
+     * hash SHA-256 exigido para o REP-P.
+     */
+    @GetMapping("/comprovantes/{nsr}")
+    public ComprovanteRepResponse comprovante(@AuthenticationPrincipal DispositivoPrincipal me,
+                                              @PathVariable long nsr) {
+        return comprovanteRepService.porNsr(me.vinculoId(), nsr);
     }
 
     @GetMapping("/espelho")

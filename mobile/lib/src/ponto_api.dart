@@ -375,6 +375,8 @@ class RegistroItem {
   final String horaLocal;
   final String dataLocal;
   final String dataHoraServidor;
+  /// SHA-256 da marcacao exigido no comprovante do REP-P (art. 79, VIII).
+  final String codigoHash;
 
   RegistroItem({
     required this.id,
@@ -384,6 +386,7 @@ class RegistroItem {
     required this.horaLocal,
     required this.dataLocal,
     required this.dataHoraServidor,
+    this.codigoHash = '',
   });
 
   factory RegistroItem.fromJson(Map<String, dynamic> json) {
@@ -398,6 +401,7 @@ class RegistroItem {
       // aparelho (exibir o UTC cru fazia batidas noturnas aparecerem no dia seguinte).
       dataLocal: json['dataLocal'] as String? ?? _dataLocalDe(instante),
       dataHoraServidor: instante,
+      codigoHash: json['codigoHash'] as String? ?? '',
     );
   }
 

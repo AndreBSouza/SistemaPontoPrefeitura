@@ -112,10 +112,12 @@ public class AfdService {
                 }
             } else {
                 RegistroPonto r = (RegistroPonto) item;
-                montador.marcacao(r.getNsr(), r.getDataHoraServidor(),
+                // Usa o hash gravado na batida — é o que o trabalhador viu no comprovante.
+                // Registros anteriores a essa gravação não têm o valor; aí o montador encadeia.
+                montador.marcacao(r.getNsr(), r.instanteDaMarcacao(),
                         cpfPorVinculo.getOrDefault(r.getVinculoId(), ""),
-                        r.getCriadoEm() != null ? r.getCriadoEm() : r.getDataHoraServidor(),
-                        coletorDe(r.getOrigem()), r.isOffline());
+                        r.instanteDaGravacao(),
+                        coletorDe(r.getOrigem()), r.isOffline(), r.getHashRep());
             }
         }
 
