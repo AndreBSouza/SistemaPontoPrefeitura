@@ -13,7 +13,7 @@ dependencies:
   dio: ^5.7.0
   uuid: ^4.5.1
   # Offline-first / sincronizacao
-  connectivity_plus: ^6.0.5
+  connectivity_plus: ^7.3.1
   path_provider: ^2.1.4
   # Geolocalizacao / geofencing
   geolocator: ^13.0.1
