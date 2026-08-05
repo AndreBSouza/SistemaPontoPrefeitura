@@ -41,7 +41,7 @@ jobs:
       # --- Java precisa de build para a analise; TS/JS analisa o fonte direto ---
       - name: Configurar JDK 21 (Temurin)
         if: matrix.language == 'java-kotlin'
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
