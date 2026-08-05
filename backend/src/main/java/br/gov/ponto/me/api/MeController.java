@@ -19,6 +19,7 @@ import br.gov.ponto.ia.api.PerguntaRequest;
 import br.gov.ponto.jornada.api.HorarioResponse;
 import br.gov.ponto.lgpd.api.ExportacaoTitularResponse;
 import br.gov.ponto.me.CarteiraService;
+import br.gov.ponto.me.ComprovantePdfService;
 import br.gov.ponto.me.ComprovanteRepService;
 import br.gov.ponto.me.MeService;
 import br.gov.ponto.relatorios.PdfEspelhoService;
@@ -55,6 +56,7 @@ public class MeController {
 
     private final MeService meService;
     private final ComprovanteRepService comprovanteRepService;
+    private final ComprovantePdfService comprovantePdfService;
     private final BrandingService brandingService;
     private final PdfEspelhoService pdfEspelhoService;
     private final CarteiraService carteiraService;
@@ -69,9 +71,11 @@ public class MeController {
                         br.gov.ponto.me.GestorService gestorService,
                         AssistenteService assistenteService,
                         AtestadoOcrService atestadoOcrService,
-                        ComprovanteRepService comprovanteRepService) {
+                        ComprovanteRepService comprovanteRepService,
+                        ComprovantePdfService comprovantePdfService) {
         this.meService = meService;
         this.comprovanteRepService = comprovanteRepService;
+        this.comprovantePdfService = comprovantePdfService;
         this.brandingService = brandingService;
         this.pdfEspelhoService = pdfEspelhoService;
         this.carteiraService = carteiraService;
@@ -148,6 +152,19 @@ public class MeController {
     public ComprovanteRepResponse comprovante(@AuthenticationPrincipal DispositivoPrincipal me,
                                               @PathVariable long nsr) {
         return comprovanteRepService.porNsr(me.vinculoId(), nsr);
+    }
+
+    /**
+     * Mesmo comprovante em PDF ASSINADO — formato exigido pelo art. 80, I, quando o comprovante
+     * e' entregue eletronicamente.
+     */
+    @GetMapping(value = "/comprovantes/{nsr}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> comprovantePdf(@AuthenticationPrincipal DispositivoPrincipal me,
+                                                 @PathVariable long nsr) {
+        return ResponseEntity.ok()
+                .header("Content-Disposition", "attachment; filename=\"comprovante-" + nsr + ".pdf\"")
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(comprovantePdfService.gerar(me.vinculoId(), nsr));
     }
 
     @GetMapping("/espelho")

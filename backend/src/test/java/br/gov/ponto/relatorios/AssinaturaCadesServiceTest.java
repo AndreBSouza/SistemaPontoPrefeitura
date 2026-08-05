@@ -12,6 +12,7 @@ import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.util.Store;
+import br.gov.ponto.relatorios.rep.CertificadoIcpBrasil;
 import org.junit.jupiter.api.Test;
 
 import java.io.OutputStream;
@@ -72,7 +73,8 @@ class AssinaturaCadesServiceTest {
     @Test
     void assinaEProduzUmCmsDestacadoVerificavel() throws Exception {
         Path ks = criarKeystore("senha123", "ente");
-        AssinaturaCadesService servico = new AssinaturaCadesService(ks.toString(), "senha123", "ente");
+        AssinaturaCadesService servico = new AssinaturaCadesService(
+                new CertificadoIcpBrasil(ks.toString(), "senha123", "ente"));
 
         byte[] afd = "000000000110000... conteudo do AFD ...".getBytes(StandardCharsets.UTF_8);
         Optional<String> assinatura = servico.assinar(afd);
@@ -94,7 +96,8 @@ class AssinaturaCadesServiceTest {
     @Test
     void usaOPrimeiroAliasComChaveQuandoAliasNaoInformado() throws Exception {
         Path ks = criarKeystore("s3nha", "qualquer");
-        AssinaturaCadesService servico = new AssinaturaCadesService(ks.toString(), "s3nha", "");
+        AssinaturaCadesService servico = new AssinaturaCadesService(
+                new CertificadoIcpBrasil(ks.toString(), "s3nha", ""));
         assertThat(servico.assinar("x".getBytes(StandardCharsets.UTF_8))).isPresent();
     }
 }

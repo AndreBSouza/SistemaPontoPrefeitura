@@ -55,6 +55,8 @@ class ComprovanteRepTest {
     @Autowired
     private ComprovanteRepService comprovanteRepService;
     @Autowired
+    private ComprovantePdfService comprovantePdfService;
+    @Autowired
     private AfdService afdService;
 
     private UUID vinculoId;
@@ -128,6 +130,37 @@ class ComprovanteRepTest {
         String h2 = comprovanteRepService.porNsr(vinculoId, segunda).codigoHash();
 
         assertThat(h1).isNotEqualTo(h2);
+    }
+
+    @Test
+    void comprovanteEmPdfTrazOHashPorExtenso() throws Exception {
+        long nsr = bater();
+        String hash = comprovanteRepService.porNsr(vinculoId, nsr).codigoHash();
+
+        byte[] pdf = comprovantePdfService.gerar(vinculoId, nsr);
+
+        assertThat(new String(pdf, 0, 5, java.nio.charset.StandardCharsets.US_ASCII)).isEqualTo("%PDF-");
+        // O hash precisa estar legível no documento: é com ele que o servidor confere a marcação
+        // contra o AFD. O texto é extraído do PDF para garantir que não ficou só nos metadados.
+        var leitor = new com.lowagie.text.pdf.PdfReader(pdf);
+        String texto = new com.lowagie.text.pdf.parser.PdfTextExtractor(leitor).getTextFromPage(1);
+        leitor.close();
+        assertThat(texto.replaceAll("\\s", "")).contains(hash);
+        assertThat(texto).contains("Comprovante de Registro de Ponto do Trabalhador");
+    }
+
+    @Test
+    void semCertificadoOPdfAvisaQueNaoEstaAssinado() throws Exception {
+        // Neste ambiente de teste nao ha 'assinatura.keystore', entao prevalece o assinador no-op.
+        // O comprovante ainda e' entregue, mas dizendo a verdade sobre o proprio valor probatorio.
+        long nsr = bater();
+        byte[] pdf = comprovantePdfService.gerar(vinculoId, nsr);
+
+        var leitor = new com.lowagie.text.pdf.PdfReader(pdf);
+        String texto = new com.lowagie.text.pdf.parser.PdfTextExtractor(leitor).getTextFromPage(1);
+        assertThat(leitor.getAcroFields().getSignatureNames()).isEmpty();
+        leitor.close();
+        assertThat(texto).contains("NAO assinado digitalmente");
     }
 
     @Test

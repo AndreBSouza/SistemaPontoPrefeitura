@@ -40,7 +40,7 @@ cd web && npm run build && npm test
 ```bash
 cd mobile && flutter analyze
 ```
-**Estado atual: backend 287/287 · web build + vitest 10/10 · flutter analyze limpo.**
+**Estado atual: backend 292/292 · web build + vitest 10/10 · flutter analyze limpo.**
 
 > ⚠️ `mvn -q` **esconde erro de compilação** e deixa relatório do surefire velho — sempre confira o
 > exit code real do Maven, não o do shell.
@@ -114,17 +114,19 @@ sequência** das marcações (exigência do Anexo IX) e RLS.
 - `RegistroPonto.instanteDaMarcacao()/instanteDaGravacao()`: os campos 3 e 5 do registro tipo 7 são
   instantes distintos — numa batida off-line a marcação é a hora do aparelho e a gravação é a do
   servidor.
+- **PDF assinado (art. 80, I)**: `GET /api/me/comprovantes/{nsr}/pdf`. A assinatura é **embutida no
+  arquivo (PAdES)**, então qualquer leitor de PDF a exibe — diferente do AFD, que usa `.p7s`
+  destacado por ser texto de largura fixa. `CertificadoIcpBrasil` carrega a keystore UMA vez e é
+  compartilhado pelos dois assinadores. Sem certificado, o PDF sai com aviso explícito de que
+  **não** está assinado, em vez de fingir conformidade.
 
 ### ⛔ O que ainda falta neste tema
 
-1. **Comprovante em PDF assinado** (art. 80, I): hoje o comprovante é entregue como JSON. A norma
-   exige PDF com assinatura eletrônica quando o formato for eletrônico. O `PdfEspelhoService`
-   (OpenPDF) já é o molde a seguir, e o `AssinaturaService` já assina.
-2. **Homologar o arquivo** no programa de tratamento do MTP com dados reais, depois que o número do
+1. **Homologar o arquivo** no programa de tratamento do MTP com dados reais, depois que o número do
    INPI existir. Dois pontos são interpretação nossa e devem ser conferidos na homologação:
    (a) o CRC-16 cobre o registro **sem** o próprio campo de CRC; (b) o hash do tipo 7 concatena os
    campos 1..7 já formatados **mais** o hash anterior, sem separador.
-3. **Retroatividade**: servidores cadastrados ANTES desta versão não têm evento de inclusão no ARP
+2. **Retroatividade**: servidores cadastrados ANTES desta versão não têm evento de inclusão no ARP
    (não aparecem como tipo 5) e marcações antigas não têm `hash_rep` (o AFD as encadeia na
    geração). Se a fiscalização exigir histórico, decida o backfill com cuidado — os NSRs teriam de
    ser alocados fora de ordem cronológica.
