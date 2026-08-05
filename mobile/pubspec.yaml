@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  dio: ^5.7.0
+  dio: ^5.11.0
   uuid: ^4.5.1
   # Offline-first / sincronizacao
   connectivity_plus: ^6.0.5
