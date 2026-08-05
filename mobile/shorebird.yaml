@@ -1,0 +1,16 @@
+# Configuração do Shorebird (code push / OTA para Flutter). Deve ser versionada.
+# Docs: https://docs.shorebird.dev
+#
+# ATENÇÃO: o `app_id` abaixo é um PLACEHOLDER. Antes do primeiro release:
+#   1) shorebird login
+#   2) shorebird init            # gera o app_id real e grava aqui
+#      (se este arquivo já existir, rode `shorebird apps create` e cole o id abaixo)
+# Depois use os scripts em tool/: shorebird-release.sh (a cada versão de loja) e
+# shorebird-patch.sh (correções OTA). Passo a passo em docs/shorebird-ota.md.
+#
+# O app_id NÃO é segredo — só identifica o app ao pedir patches ao servidor do Shorebird.
+app_id: SUBSTITUA_APOS_shorebird_init
+
+# auto_update: true = o app baixa/aplica patches automaticamente ao abrir (padrão).
+# Para controlar manualmente, use auto_update: false + package:shorebird_code_push.
+auto_update: true

@@ -1,0 +1,204 @@
+- generic [ref=f18e2]:
+  - link "Pular para conteúdo principal" [ref=f18e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f18e4]:
+    - link "Página inicial" [ref=f18e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f18e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f18e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f18e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f18e9]:
+      - button "Ativar tema claro" [pressed] [ref=f18e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f18e11]:
+        - generic [ref=f18e12]: 👤
+        - generic [ref=f18e13]: Administrador
+      - button "Trocar ente ativo" [ref=f18e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f18e15] [cursor=pointer]: Sair
+  - generic [ref=f18e16]:
+    - navigation "Menu principal" [ref=f18e17]:
+      - generic [ref=f18e18]:
+        - generic [ref=f18e19]: Principal
+        - link "Dashboard" [ref=f18e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f18e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f18e22]:
+        - generic [ref=f18e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f18e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f18e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f18e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f18e27]: 👥
+          - text: Servidores
+      - generic [ref=f18e28]:
+        - generic [ref=f18e29]: Frequência (P1)
+        - link "Jornadas" [ref=f18e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f18e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f18e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f18e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f18e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f18e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f18e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f18e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f18e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f18e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f18e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f18e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f18e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f18e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f18e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f18e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f18e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f18e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f18e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f18e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f18e50]:
+        - generic [ref=f18e51]: Relatórios (P1)
+        - link "Frequência" [ref=f18e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f18e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f18e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f18e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f18e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f18e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f18e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f18e59]: 📶
+          - text: Adesão
+      - generic [ref=f18e60]:
+        - generic [ref=f18e61]: Comunicação
+        - link "Comunicados" [ref=f18e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f18e63]: 📣
+          - text: Comunicados
+      - generic [ref=f18e64]:
+        - generic [ref=f18e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f18e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f18e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f18e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f18e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f18e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f18e71]: 💳
+          - text: Billing
+      - generic [ref=f18e72]:
+        - generic [ref=f18e73]: Totem
+        - link "Totem de Ponto" [ref=f18e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f18e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f18e76]:
+        - generic [ref=f18e77]: Configurações
+        - link "Identidade visual" [ref=f18e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f18e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f18e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f18e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f18e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f18e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f18e84]:
+      - navigation "Caminho de navegação" [ref=f18e85]:
+        - list [ref=f18e86]:
+          - listitem [ref=f18e87]:
+            - link "Dashboard" [ref=f18e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f18e89]: ›Jornadas
+      - heading "Jornadas de Trabalho" [level=1] [ref=f18e90]
+      - paragraph [ref=f18e91]: Configure as jornadas e horários de cada turno
+      - generic [ref=f18e92]:
+        - generic [ref=f18e93]: 1 jornada(s)
+        - button "+ Nova Jornada" [ref=f18e96] [cursor=pointer]
+      - table [ref=f18e102]:
+        - caption [ref=f18e103]: Lista de jornadas
+        - rowgroup [ref=f18e104]:
+          - row [ref=f18e105]:
+            - columnheader "Nome" [ref=f18e106]
+            - columnheader "Tipo" [ref=f18e107]
+            - columnheader "CH Semanal (min)" [ref=f18e108]
+            - columnheader "Tolerância (min)" [ref=f18e109]
+            - columnheader "Intervalo (min)" [ref=f18e110]
+            - columnheader "Situação" [ref=f18e111]
+            - columnheader "Ações" [ref=f18e112]
+        - rowgroup [ref=f18e113]:
+          - row [ref=f18e114]:
+            - cell "Comercial 8-17" [ref=f18e115]
+            - cell "FIXA" [ref=f18e116]
+            - cell "2400" [ref=f18e118]
+            - cell "10" [ref=f18e119]
+            - cell "60" [ref=f18e120]
+            - cell "Ativa" [ref=f18e121]
+            - cell [ref=f18e123]:
+              - button "Horários" [ref=f18e124] [cursor=pointer]
+      - dialog [ref=f18e125]:
+        - generic [ref=f18e126]:
+          - generic [ref=f18e127]:
+            - heading "Nova Jornada" [level=2] [ref=f18e128]
+            - button "Fechar modal" [ref=f18e129] [cursor=pointer]: ×
+          - generic [ref=f18e131]:
+            - generic [ref=f18e132]:
+              - generic [ref=f18e133]: Nome *
+              - textbox "Nome *" [active] [ref=f18e134]
+            - generic [ref=f18e135]:
+              - generic [ref=f18e136]:
+                - generic [ref=f18e137]: Tipo *
+                - combobox "Tipo *" [ref=f18e138]:
+                  - option "FIXA" [selected]
+                  - option "FLEXIVEL"
+                  - option "ESCALA_12X36"
+                  - option "PLANTAO"
+                  - option "MAGISTERIO"
+              - generic [ref=f18e139]:
+                - generic [ref=f18e140]: CH Semanal (min) *
+                - spinbutton "CH Semanal (min) *" [ref=f18e141]
+            - generic [ref=f18e142]:
+              - generic [ref=f18e143]:
+                - generic [ref=f18e144]: Tolerância (min)
+                - spinbutton "Tolerância (min)" [ref=f18e145]: "5"
+              - generic [ref=f18e146]:
+                - generic [ref=f18e147]: Intervalo (min)
+                - spinbutton "Intervalo (min)" [ref=f18e148]: "60"
+            - generic [ref=f18e149]:
+              - generic [ref=f18e150]: Hora-atividade semanal (min) (opcional)
+              - spinbutton "Hora-atividade semanal (min) (opcional)" [ref=f18e151]
+              - paragraph [ref=f18e152]: Parte da carga dedicada a planejamento (fora de sala). O mínimo legal do magistério é 1/3 da carga; a conformidade é verificada em Conformidade.
+          - generic [ref=f18e153]:
+            - button "Cancelar" [ref=f18e154] [cursor=pointer]
+            - button "Criar" [ref=f18e155] [cursor=pointer]
+  - contentinfo [ref=f18e100]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

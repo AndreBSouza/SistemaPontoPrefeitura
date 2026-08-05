@@ -1,0 +1,102 @@
+# =============================================================================
+# CI Mobile Android - Ponto Municipal (GitHub Actions)
+# -----------------------------------------------------------------------------
+# Analisa, testa e empacota o app Flutter para Android (APK de release nao
+# assinado, suficiente para CI). A assinatura para Play Store deve ser feita em
+# um pipeline de release dedicado com keystore em secrets (ver comentarios ao
+# final). Roda em ubuntu-latest (Android builda em Linux).
+# =============================================================================
+name: mobile-android
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    paths:
+      - "mobile/**"
+      - ".github/workflows/mobile-android.yml"
+  pull_request:
+    paths:
+      - "mobile/**"
+      - ".github/workflows/mobile-android.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: mobile-android-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: mobile
+
+jobs:
+  build-apk:
+    name: Flutter build apk (Android)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # JDK necessario para o build Gradle do Android.
+      - name: Configurar JDK 17 (Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      # Instala o Flutter (canal stable) com cache automatico do SDK.
+      - name: Configurar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          # O pubspec exige Dart SDK ^3.10.0; usar uma versao Flutter compativel.
+          flutter-version: "3.35.0"
+          cache: true
+
+      - name: Versao do Flutter
+        run: flutter --version
+
+      - name: Baixar dependencias (pub get)
+        run: flutter pub get
+
+      # Verificacao de formatacao (nao falha o build; apenas reporta).
+      - name: Conferir formatacao
+        run: dart format --output=none --set-exit-if-changed .
+        continue-on-error: true
+
+      - name: Analise estatica (flutter analyze)
+        run: flutter analyze
+
+      - name: Testes unitarios
+        run: flutter test
+
+      # APK de release SEM assinatura (CI). Para Play Store, ver bloco abaixo.
+      - name: Build APK (release, nao assinado)
+        run: flutter build apk --release
+
+      - name: Publicar APK como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: ponto-municipal-app-release-apk
+          path: mobile/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+
+      # -----------------------------------------------------------------------
+      # App Bundle (.aab) para publicacao na Google Play.
+      # Descomente em um pipeline de release. Para assinar, injete a keystore
+      # via secrets e configure mobile/android/key.properties no step anterior:
+      #
+      #   - name: Restaurar keystore
+      #     run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > mobile/android/app/upload-keystore.jks
+      #   - name: Gerar key.properties
+      #     run: |
+      #       cat > mobile/android/key.properties <<EOF
+      #       storeFile=upload-keystore.jks
+      #       storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}
+      #       keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+      #       keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+      #       EOF
+      #
+      # - name: Build App Bundle (release, assinado)
+      #   run: flutter build appbundle --release
+      # -----------------------------------------------------------------------

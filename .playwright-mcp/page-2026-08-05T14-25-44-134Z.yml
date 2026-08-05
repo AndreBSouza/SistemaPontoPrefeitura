@@ -1,0 +1,39 @@
+- generic [ref=f53e4]:
+  - generic [ref=f53e5]:
+    - generic [ref=f53e6]: 🏛️
+    - heading "Ponto Municipal" [level=1] [ref=f53e7]
+    - paragraph [ref=f53e8]: Sistema de Ponto Eletrônico para Servidores Públicos
+  - generic [ref=f53e9]:
+    - generic [ref=f53e10]:
+      - generic [ref=f53e11]: Tenant ID (X-Tenant-Id) *
+      - textbox "Tenant ID (X-Tenant-Id) *" [active] [ref=f53e12]:
+        - /placeholder: "ex: 550e8400-e29b-41d4-a716-446655440000"
+      - paragraph [ref=f53e13]: UUID exibido pelo DevDataSeeder nos logs do backend ao inicializar.
+    - generic [ref=f53e14]:
+      - generic [ref=f53e15]: Nome do Ente (opcional)
+      - textbox "Nome do Ente (opcional)" [ref=f53e16]:
+        - /placeholder: "ex: Prefeitura de Exemplo"
+    - group "Papel (simulação dev)" [ref=f53e17]:
+      - generic [ref=f53e19]:
+        - generic [ref=f53e20] [cursor=pointer]:
+          - checkbox "Administrador do ente" [checked] [ref=f53e21]
+          - text: Administrador do ente
+        - generic [ref=f53e22] [cursor=pointer]:
+          - checkbox "RH" [ref=f53e23]
+          - text: RH
+        - generic [ref=f53e24] [cursor=pointer]:
+          - checkbox "Gestor / Chefia" [ref=f53e25]
+          - text: Gestor / Chefia
+        - generic [ref=f53e26] [cursor=pointer]:
+          - checkbox "Controladoria / Controle interno" [ref=f53e27]
+          - text: Controladoria / Controle interno
+        - generic [ref=f53e28] [cursor=pointer]:
+          - checkbox "Operador (provedor do SaaS)" [ref=f53e29]
+          - text: Operador (provedor do SaaS)
+      - paragraph [ref=f53e30]: Em produção os papéis virão do login Keycloak. Aqui, simule para ver o menu mudar.
+    - button "Acessar painel" [ref=f53e31] [cursor=pointer]
+  - generic [ref=f53e32]:
+    - strong [ref=f53e33]: Modo desenvolvimento
+    - text: — autenticação simplificada via Tenant ID.Em produção, será substituído pelo login do ente via
+    - strong [ref=f53e34]: Keycloak OIDC
+    - text: (sem gov.br).

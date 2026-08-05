@@ -1,0 +1,377 @@
+{
+  "realm": "ponto",
+  "enabled": true,
+  "displayName": "Ponto Municipal",
+  "displayNameHtml": "<b>Ponto</b> Municipal",
+  "loginWithEmailAllowed": true,
+  "registrationAllowed": false,
+  "resetPasswordAllowed": true,
+  "rememberMe": true,
+  "verifyEmail": false,
+  "sslRequired": "external",
+  "bruteForceProtected": true,
+  "permanentLockout": false,
+  "maxFailureWaitSeconds": 900,
+  "minimumQuickLoginWaitSeconds": 60,
+  "waitIncrementSeconds": 60,
+  "quickLoginCheckMilliSeconds": 1000,
+  "maxDeltaTimeSeconds": 43200,
+  "failureFactor": 5,
+  "otpPolicyType": "totp",
+  "otpPolicyAlgorithm": "HmacSHA1",
+  "otpPolicyInitialCounter": 0,
+  "otpPolicyDigits": 6,
+  "otpPolicyLookAheadWindow": 1,
+  "otpPolicyPeriod": 30,
+  "otpSupportedApplications": [
+    "totpAppFreeOTPName",
+    "totpAppGoogleName",
+    "totpAppMicrosoftAuthenticatorName"
+  ],
+  "roles": {
+    "realm": [
+      { "name": "servidor", "description": "Servidor: registra ponto e acompanha o proprio espelho" },
+      { "name": "gestor", "description": "Chefia imediata: aprova justificativas da equipe" },
+      { "name": "rh", "description": "Departamento de Pessoal: cadastro, apuracao, fechamento" },
+      { "name": "controladoria", "description": "Controle Interno: auditoria e conformidade" },
+      { "name": "tenant-admin", "description": "Administrador do ente" },
+      { "name": "operador", "description": "Operador SaaS (super admin)" }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "ponto-web",
+      "name": "Painel Web",
+      "description": "SPA React (Vite) do painel web do Ponto Municipal",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "implicitFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false,
+      "rootUrl": "http://localhost:5173",
+      "baseUrl": "http://localhost:5173",
+      "redirectUris": ["http://localhost:5173/*"],
+      "webOrigins": ["http://localhost:5173"],
+      "attributes": {
+        "pkce.code.challenge.method": "S256",
+        "post.logout.redirect.uris": "http://localhost:5173/*"
+      },
+      "_comment_tenant_id": "OBRIGATORIO para o isolamento multi-tenant: o mapper abaixo injeta o atributo de usuario 'tenant_id' (UUID do ente) como claim no access token. Cada usuario administrativo DEVE ter o atributo tenant_id = UUID do seu ente (definido pelo provisionamento no aprovar da adesao, ou manualmente). Sem esse claim o backend (TenantFilter) NAO resolve o ente e nega o acesso por RLS (fail-closed) — nunca cai no cabecalho X-Tenant-Id. Em Keycloak 24+ com user profile declarativo, declare 'tenant_id' no user profile do realm (ou habilite unmanaged attributes) para poder gravar o atributo.",
+      "protocolMappers": [
+        {
+          "name": "tenant_id",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-usermodel-attribute-mapper",
+          "consentRequired": false,
+          "config": {
+            "user.attribute": "tenant_id",
+            "claim.name": "tenant_id",
+            "jsonType.label": "String",
+            "id.token.claim": "true",
+            "access.token.claim": "true",
+            "userinfo.token.claim": "true",
+            "multivalued": "false",
+            "aggregate.attrs": "false"
+          }
+        }
+      ],
+      "fullScopeAllowed": true,
+      "defaultClientScopes": [
+        "web-origins",
+        "acr",
+        "profile",
+        "roles",
+        "basic",
+        "email"
+      ],
+      "optionalClientScopes": [
+        "address",
+        "phone",
+        "offline_access",
+        "microprofile-jwt"
+      ]
+    },
+    {
+      "clientId": "ponto-backend",
+      "name": "API Backend",
+      "description": "Resource server Spring Boot (valida bearer tokens, nao inicia login)",
+      "enabled": true,
+      "bearerOnly": true,
+      "publicClient": false,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "serviceAccountsEnabled": false
+    }
+  ],
+  "_comment_required_actions": "CONFIGURE_TOTP habilitado e disponivel para que perfis administrativos sejam obrigados a registrar um app de OTP (TOTP) no primeiro acesso. O fluxo 'browser-mfa' abaixo dispara essa configuracao via o sub-fluxo OTP condicional.",
+  "requiredActions": [
+    {
+      "alias": "CONFIGURE_TOTP",
+      "name": "Configure OTP",
+      "providerId": "CONFIGURE_TOTP",
+      "enabled": true,
+      "defaultAction": false,
+      "priority": 10,
+      "config": {}
+    },
+    {
+      "alias": "TERMS_AND_CONDITIONS",
+      "name": "Terms and Conditions",
+      "providerId": "TERMS_AND_CONDITIONS",
+      "enabled": false,
+      "defaultAction": false,
+      "priority": 20,
+      "config": {}
+    },
+    {
+      "alias": "UPDATE_PASSWORD",
+      "name": "Update Password",
+      "providerId": "UPDATE_PASSWORD",
+      "enabled": true,
+      "defaultAction": false,
+      "priority": 30,
+      "config": {}
+    },
+    {
+      "alias": "UPDATE_PROFILE",
+      "name": "Update Profile",
+      "providerId": "UPDATE_PROFILE",
+      "enabled": true,
+      "defaultAction": false,
+      "priority": 40,
+      "config": {}
+    },
+    {
+      "alias": "VERIFY_EMAIL",
+      "name": "Verify Email",
+      "providerId": "VERIFY_EMAIL",
+      "enabled": true,
+      "defaultAction": false,
+      "priority": 50,
+      "config": {}
+    }
+  ],
+  "_comment_authentication": "Fluxo de browser customizado 'browser-mfa' definido como fluxo de login padrao do realm (browserFlow). Ele replica o fluxo padrao do Keycloak, mas troca o passo de OTP por um sub-fluxo CONDITIONAL: o executor 'conditional-user-role' verifica se o usuario possui um dos roles administrativos (rh, controladoria, tenant-admin, operador) e, em caso afirmativo, o 'auth-otp-form' passa a ser REQUIRED. Para esses usuarios, se ainda nao houver um OTP cadastrado, o Keycloak dispara automaticamente o required action CONFIGURE_TOTP. Servidores e gestores nao caem na condicao e seguem apenas com usuario/senha.",
+  "authenticationFlows": [
+    {
+      "alias": "browser-mfa",
+      "description": "Fluxo de browser com MFA/OTP condicional para perfis administrativos (rh, controladoria, tenant-admin, operador)",
+      "providerId": "basic-flow",
+      "topLevel": true,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-cookie",
+          "authenticatorFlow": false,
+          "requirement": "ALTERNATIVE",
+          "priority": 10,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticator": "identity-provider-redirector",
+          "authenticatorFlow": false,
+          "requirement": "ALTERNATIVE",
+          "priority": 20,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "ALTERNATIVE",
+          "priority": 30,
+          "flowAlias": "browser-mfa forms",
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "alias": "browser-mfa forms",
+      "description": "Usuario/senha seguido do sub-fluxo de OTP condicional",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "auth-username-password-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 20,
+          "flowAlias": "browser-mfa OTP condicional admin",
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "alias": "browser-mfa OTP condicional admin",
+      "description": "Exige OTP somente quando o usuario possui um role administrativo. Cada role administrativo e avaliado em seu proprio sub-fluxo condicional, em OR logico.",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 10,
+          "flowAlias": "OTP se rh",
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 20,
+          "flowAlias": "OTP se controladoria",
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 30,
+          "flowAlias": "OTP se tenant-admin",
+          "userSetupAllowed": false
+        },
+        {
+          "authenticatorFlow": true,
+          "requirement": "CONDITIONAL",
+          "priority": 40,
+          "flowAlias": "OTP se operador",
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "alias": "OTP se rh",
+      "description": "Se o usuario tem o role 'rh', exige OTP",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "authenticatorConfig": "cond-role-rh"
+        },
+        {
+          "authenticator": "auth-otp-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "alias": "OTP se controladoria",
+      "description": "Se o usuario tem o role 'controladoria', exige OTP",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "authenticatorConfig": "cond-role-controladoria"
+        },
+        {
+          "authenticator": "auth-otp-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "alias": "OTP se tenant-admin",
+      "description": "Se o usuario tem o role 'tenant-admin', exige OTP",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "authenticatorConfig": "cond-role-tenant-admin"
+        },
+        {
+          "authenticator": "auth-otp-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "userSetupAllowed": false
+        }
+      ]
+    },
+    {
+      "alias": "OTP se operador",
+      "description": "Se o usuario tem o role 'operador', exige OTP",
+      "providerId": "basic-flow",
+      "topLevel": false,
+      "builtIn": false,
+      "authenticationExecutions": [
+        {
+          "authenticator": "conditional-user-role",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 10,
+          "userSetupAllowed": false,
+          "authenticatorConfig": "cond-role-operador"
+        },
+        {
+          "authenticator": "auth-otp-form",
+          "authenticatorFlow": false,
+          "requirement": "REQUIRED",
+          "priority": 20,
+          "userSetupAllowed": false
+        }
+      ]
+    }
+  ],
+  "authenticatorConfig": [
+    {
+      "alias": "cond-role-rh",
+      "config": {
+        "condUserRole": "rh",
+        "negate": "false"
+      }
+    },
+    {
+      "alias": "cond-role-controladoria",
+      "config": {
+        "condUserRole": "controladoria",
+        "negate": "false"
+      }
+    },
+    {
+      "alias": "cond-role-tenant-admin",
+      "config": {
+        "condUserRole": "tenant-admin",
+        "negate": "false"
+      }
+    },
+    {
+      "alias": "cond-role-operador",
+      "config": {
+        "condUserRole": "operador",
+        "negate": "false"
+      }
+    }
+  ],
+  "browserFlow": "browser-mfa",
+  "_comment_identity_provider": "Login federado gov.br REMOVIDO a pedido. Autenticacao do produto: servidores pelo app via codigo de ativacao do RH + token de dispositivo (cabecalho X-Device-Token); administradores (rh/gestor/controladoria/tenant-admin/operador) pelo login do proprio Keycloak (usuario/senha do realm + MFA OTP), sem federacao externa.",
+  "identityProviders": []
+}

@@ -1,0 +1,219 @@
+- generic [ref=f44e2]:
+  - link "Pular para conteúdo principal" [ref=f44e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f44e4]:
+    - link "Página inicial" [ref=f44e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f44e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f44e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f44e8]: "Tenant: 42f335c0-6c2c-4ba2-953b-a2923f0c85af"
+    - generic [ref=f44e9]:
+      - button "Ativar tema claro" [pressed] [ref=f44e10] [cursor=pointer]: ☀️ Claro
+      - 'generic "Papéis: tenant-admin" [ref=f44e11]':
+        - generic [ref=f44e12]: 👤
+        - generic [ref=f44e13]: Administrador do ente
+      - button "Trocar ente ativo" [ref=f44e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f44e15] [cursor=pointer]: Sair
+  - generic [ref=f44e16]:
+    - navigation "Menu principal" [ref=f44e17]:
+      - generic [ref=f44e18]:
+        - generic [ref=f44e19]: Principal
+        - link "Dashboard" [ref=f44e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f44e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f44e22]:
+        - generic [ref=f44e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f44e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f44e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f44e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f44e27]: 👥
+          - text: Servidores
+      - generic [ref=f44e28]:
+        - generic [ref=f44e29]: Frequência (P1)
+        - link "Jornadas" [ref=f44e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f44e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f44e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f44e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f44e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f44e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f44e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f44e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f44e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f44e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f44e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f44e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f44e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f44e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f44e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f44e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f44e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f44e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f44e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f44e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f44e50]:
+        - generic [ref=f44e51]: Relatórios (P1)
+        - link "Frequência" [ref=f44e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f44e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f44e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f44e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f44e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f44e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f44e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f44e59]: 📶
+          - text: Adesão
+      - generic [ref=f44e60]:
+        - generic [ref=f44e61]: Comunicação
+        - link "Comunicados" [ref=f44e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f44e63]: 📣
+          - text: Comunicados
+      - generic [ref=f44e64]:
+        - generic [ref=f44e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f44e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f44e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f44e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f44e69]: 🔍
+          - text: Auditoria
+      - generic [ref=f44e70]:
+        - generic [ref=f44e71]: Totem
+        - link "Totem de Ponto" [ref=f44e72] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f44e73]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f44e74]:
+        - generic [ref=f44e75]: Configurações
+        - link "Identidade visual" [ref=f44e76] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f44e77]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f44e78] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f44e79]: 🎛️
+          - text: Funcionalidades
+      - generic [ref=f44e80]:
+        - generic [ref=f44e81]: Operador (SaaS)
+        - link "Contrato" [ref=f44e82] [cursor=pointer]:
+          - /url: /contrato
+          - generic [ref=f44e83]: 📄
+          - text: Contrato
+    - main [ref=f44e84]:
+      - navigation "Caminho de navegação" [ref=f44e85]:
+        - list [ref=f44e86]:
+          - listitem [ref=f44e87]:
+            - link "Dashboard" [ref=f44e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f44e89]: ›Servidores
+      - heading "Servidores" [level=1] [ref=f44e90]
+      - paragraph [ref=f44e91]: Cadastro de servidores e vínculos empregatícios
+      - generic [ref=f44e92]:
+        - generic [ref=f44e93]: 1 servidor(es)
+        - generic [ref=f44e95]:
+          - button "📥 Importar CSV" [ref=f44e96] [cursor=pointer]
+          - button "+ Novo Servidor" [ref=f44e97] [cursor=pointer]
+      - table [ref=f44e103]:
+        - caption [ref=f44e104]: Lista de servidores
+        - rowgroup [ref=f44e105]:
+          - row [ref=f44e106]:
+            - columnheader "Nome" [ref=f44e107]
+            - columnheader "CPF" [ref=f44e108]
+            - columnheader "E-mail" [ref=f44e109]
+            - columnheader "Vínculos" [ref=f44e110]
+            - columnheader "Órgão" [ref=f44e111]
+            - columnheader "Situação" [ref=f44e112]
+            - columnheader "App Móvel" [ref=f44e113]
+        - rowgroup [ref=f44e114]:
+          - row [ref=f44e115]:
+            - cell "Servidor Demo" [ref=f44e116]
+            - cell "39053344705" [ref=f44e117]
+            - cell "demo@ente.gov.br" [ref=f44e118]
+            - cell "M-DEMO / ESTATUTARIO — Analista" [ref=f44e119]
+            - cell "—" [ref=f44e121]
+            - cell "Ativo" [ref=f44e123]
+            - cell "M-DEMO Gerar código de ativação para vínculo M-DEMO Gerenciar dispositivos do vínculo M-DEMO Registros e localização do vínculo M-DEMO Sobreaviso do vínculo M-DEMO Lotar vínculo M-DEMO em um órgão" [ref=f44e125]:
+              - generic [ref=f44e127]:
+                - generic [ref=f44e128]: M-DEMO
+                - button "Gerar código de ativação para vínculo M-DEMO" [ref=f44e129] [cursor=pointer]: 📲 Ativar
+                - button "Gerenciar dispositivos do vínculo M-DEMO" [ref=f44e130] [cursor=pointer]: 📱 Dispositivos
+                - button "Registros e localização do vínculo M-DEMO" [ref=f44e131] [cursor=pointer]: 📍 Localização
+                - button "Sobreaviso do vínculo M-DEMO" [ref=f44e132] [cursor=pointer]: ⏰ Sobreaviso
+                - button "Lotar vínculo M-DEMO em um órgão" [ref=f44e133] [cursor=pointer]: 🏛️ Órgão
+      - dialog [ref=f44e135]:
+        - generic [ref=f44e136]:
+          - heading "Novo Servidor" [level=2] [ref=f44e137]
+          - button "Fechar modal" [ref=f44e138] [cursor=pointer]: ×
+        - generic [ref=f44e140]:
+          - generic [ref=f44e141]:
+            - generic [ref=f44e142]:
+              - generic [ref=f44e143]: CPF *
+              - textbox "CPF *" [active] [ref=f44e144]:
+                - /placeholder: 000.000.000-00
+            - generic [ref=f44e145]:
+              - generic [ref=f44e146]: Nome completo *
+              - textbox "Nome completo *" [ref=f44e147]
+          - generic [ref=f44e148]:
+            - generic [ref=f44e149]: E-mail
+            - textbox "E-mail" [ref=f44e150]
+          - group "Vínculo" [ref=f44e151]:
+            - generic [ref=f44e153]:
+              - generic [ref=f44e154]:
+                - generic [ref=f44e155]: Matrícula *
+                - textbox "Matrícula *" [ref=f44e156]
+              - generic [ref=f44e157]:
+                - generic [ref=f44e158]: Regime *
+                - combobox "Regime *" [ref=f44e159]:
+                  - option "ESTATUTARIO" [selected]
+                  - option "CELETISTA"
+                  - option "COMISSIONADO"
+                  - option "ESTAGIARIO"
+                  - option "TEMPORARIO"
+                  - option "TERCEIRIZADO"
+            - generic [ref=f44e160]:
+              - generic [ref=f44e161]:
+                - generic [ref=f44e162]: Cargo
+                - textbox "Cargo" [ref=f44e163]
+              - generic [ref=f44e164]:
+                - generic [ref=f44e165]: Carga horária semanal
+                - spinbutton "Carga horária semanal" [ref=f44e166]
+            - generic [ref=f44e167]:
+              - generic [ref=f44e168]: Órgão / Lotação
+              - combobox "Órgão / Lotação" [ref=f44e169]:
+                - option "— Sem órgão (definir depois) —" [selected]
+        - generic [ref=f44e170]:
+          - button "Cancelar" [ref=f44e171] [cursor=pointer]
+          - button "Criar" [ref=f44e172] [cursor=pointer]
+  - contentinfo [ref=f44e101]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

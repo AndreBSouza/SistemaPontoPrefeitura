@@ -1,0 +1,5 @@
+# Perfil de desenvolvimento local. Ative com: --spring.profiles.active=dev
+# Libera a API (sem Keycloak); o tenant vem do header X-Tenant-Id. NAO use em producao.
+ponto:
+  security:
+    open: true

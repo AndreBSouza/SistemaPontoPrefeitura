@@ -1,0 +1,40 @@
+name: ponto_municipal_mobile
+description: App de ponto eletronico do servidor (registro offline, geo, biometria facial).
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Rede / estado
+  dio: ^5.7.0
+  flutter_riverpod: ^2.5.1
+  # Persistencia local (fila offline cifrada)
+  drift: ^2.20.0
+  sqlite3_flutter_libs: ^0.5.24
+  flutter_secure_storage: ^9.2.2
+  # Captura e biometria facial (liveness on-device)
+  camera: ^0.11.0
+  google_mlkit_face_detection: ^0.12.0
+  # Geolocalizacao / geofencing
+  geolocator: ^13.0.1
+  # Autenticacao OIDC (Keycloak)
+  flutter_appauth: ^7.0.1
+  # Notificacoes push
+  firebase_core: ^3.6.0
+  firebase_messaging: ^15.1.3
+  # Conectividade (offline-first)
+  connectivity_plus: ^6.0.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  drift_dev: ^2.20.0
+  build_runner: ^2.4.13
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

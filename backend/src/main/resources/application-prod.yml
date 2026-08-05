@@ -1,0 +1,41 @@
+# Perfil de PRODUÇÃO. Ative com SPRING_PROFILES_ACTIVE=prod.
+#
+# Diferenças em relação ao default (dev):
+#  - Segredos SEM default → se a variável não existir, a aplicação NÃO sobe (fail-fast), em vez de
+#    usar um segredo fraco conhecido.
+#  - Conexão de runtime como role NÃO-superusuário (DB_APP_USER): a RLS por tenant do Postgres só
+#    vale para roles não-superusuário/não-BYPASSRLS. As migrations (Flyway) rodam com o dono
+#    (DB_MIGRATION_USER), que cria as tabelas; o app roda com DB_APP_USER, sujeito à RLS.
+#  - ponto.security.open explicitamente FALSE (nenhum bypass de autenticação).
+spring:
+  datasource:
+    url: ${DB_URL}
+    # Runtime: role de aplicação (não-superusuário) — a RLS efetivamente barra cross-tenant no banco.
+    username: ${DB_APP_USER}
+    password: ${DB_APP_PASSWORD}
+  flyway:
+    enabled: true
+    url: ${DB_URL}
+    # Migrations: dono das tabelas (cria schema). Nunca é a conexão de runtime.
+    user: ${DB_MIGRATION_USER}
+    password: ${DB_MIGRATION_PASSWORD}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${KEYCLOAK_JWKS_URI}
+
+ponto:
+  security:
+    # Blindagem: qualquer valor herdado é sobrescrito para false em produção.
+    open: false
+  crypto:
+    # Segredo forte obrigatório (cifra o template biométrico em repouso — LGPD). Sem default.
+    secret: ${PONTO_CRYPTO_SECRET}
+
+# Não expor swagger em produção.
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false

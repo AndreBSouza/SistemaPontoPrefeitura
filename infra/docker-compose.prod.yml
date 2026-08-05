@@ -1,0 +1,70 @@
+# Compose de PRODUÇÃO (referência). Em nuvem, prefira Postgres GERENCIADO (RDS/Cloud SQL) com
+# PITR/backup automático em vez do container postgres — troque a URL do backend e remova o serviço
+# (mas ainda crie o role de aplicação não-superusuário: ver infra/postgres/10-create-app-role.sh).
+#
+# Variáveis obrigatórias (sem default) falham cedo se não definidas: DB_PASSWORD, DB_APP_PASSWORD,
+# PONTO_CRYPTO_SECRET, KEYCLOAK_JWKS_URI.
+#
+# Isolamento: o backend conecta em RUNTIME como role NÃO-superusuário (DB_APP_USER) para a RLS por
+# tenant valer no banco; as migrations (Flyway) rodam com o dono (DB_USER). O backend NÃO publica a
+# porta 8080 — só o nginx (web) o alcança pela rede interna, e é o nginx que termina TLS.
+name: ponto-municipal-prod
+
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ${DB_USER:-ponto}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?defina DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-ponto}
+      # Consumidas pelo script de init que cria o role de aplicação (RLS).
+      DB_APP_USER: ${DB_APP_USER:-ponto_app}
+      DB_APP_PASSWORD: ${DB_APP_PASSWORD:?defina DB_APP_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Cria o role de aplicação não-superusuário na primeira inicialização.
+      - ./postgres:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ponto}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build: ../backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      DB_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-ponto}
+      # Runtime: role de aplicação (não-superusuário) — RLS por tenant ativa.
+      DB_APP_USER: ${DB_APP_USER:-ponto_app}
+      DB_APP_PASSWORD: ${DB_APP_PASSWORD:?defina DB_APP_PASSWORD}
+      # Migrations (Flyway): dono das tabelas.
+      DB_MIGRATION_USER: ${DB_USER:-ponto}
+      DB_MIGRATION_PASSWORD: ${DB_PASSWORD:?defina DB_PASSWORD}
+      PONTO_CRYPTO_SECRET: ${PONTO_CRYPTO_SECRET:?defina PONTO_CRYPTO_SECRET}
+      # Autenticação real (o perfil prod já força ponto.security.open=false):
+      KEYCLOAK_JWKS_URI: ${KEYCLOAK_JWKS_URI:?defina KEYCLOAK_JWKS_URI}
+      # IA opcional (LGPD): defina IA_API_KEY só se for usar; IA_PERMITIR_EXTERNO=false desliga tudo.
+      IA_API_KEY: ${IA_API_KEY:-}
+      IA_PERMITIR_EXTERNO: ${IA_PERMITIR_EXTERNO:-true}
+    # SEM `ports:` — o backend não é publicado; só o nginx (web) o acessa pela rede interna.
+    expose:
+      - "8080"
+    restart: unless-stopped
+
+  web:
+    build: ../web
+    depends_on:
+      - backend
+    # TLS: termine HTTPS na borda (LB/ingress/Certbot) à frente deste nginx. Publicar 443 exige
+    # certificado — ver docs. Aqui expõe 80 apenas para o proxy TLS externo.
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+volumes:
+  pgdata:

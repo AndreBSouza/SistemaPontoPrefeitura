@@ -1,0 +1,186 @@
+- generic [ref=f9e2]:
+  - link "Pular para conteúdo principal" [ref=f9e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f9e4]:
+    - link "Página inicial" [ref=f9e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f9e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f9e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f9e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f9e9]:
+      - button "Ativar tema claro" [pressed] [ref=f9e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f9e11]:
+        - generic [ref=f9e12]: 👤
+        - generic [ref=f9e13]: Administrador
+      - button "Trocar ente ativo" [ref=f9e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f9e15] [cursor=pointer]: Sair
+  - generic [ref=f9e16]:
+    - navigation "Menu principal" [ref=f9e17]:
+      - generic [ref=f9e18]:
+        - generic [ref=f9e19]: Principal
+        - link "Dashboard" [ref=f9e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f9e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f9e22]:
+        - generic [ref=f9e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f9e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f9e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f9e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f9e27]: 👥
+          - text: Servidores
+      - generic [ref=f9e28]:
+        - generic [ref=f9e29]: Frequência (P1)
+        - link "Jornadas" [ref=f9e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f9e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f9e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f9e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f9e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f9e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f9e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f9e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f9e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f9e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f9e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f9e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f9e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f9e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f9e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f9e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f9e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f9e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f9e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f9e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f9e50]:
+        - generic [ref=f9e51]: Relatórios (P1)
+        - link "Frequência" [ref=f9e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f9e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f9e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f9e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f9e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f9e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f9e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f9e59]: 📶
+          - text: Adesão
+      - generic [ref=f9e60]:
+        - generic [ref=f9e61]: Comunicação
+        - link "Comunicados" [ref=f9e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f9e63]: 📣
+          - text: Comunicados
+      - generic [ref=f9e64]:
+        - generic [ref=f9e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f9e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f9e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f9e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f9e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f9e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f9e71]: 💳
+          - text: Billing
+      - generic [ref=f9e72]:
+        - generic [ref=f9e73]: Totem
+        - link "Totem de Ponto" [ref=f9e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f9e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f9e76]:
+        - generic [ref=f9e77]: Configurações
+        - link "Identidade visual" [ref=f9e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f9e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f9e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f9e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f9e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f9e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f9e84]:
+      - navigation "Caminho de navegação" [ref=f9e85]:
+        - list [ref=f9e86]:
+          - listitem [ref=f9e87]:
+            - link "Dashboard" [ref=f9e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f9e89]: ›Órgãos / Lotações
+      - heading "Órgãos / Lotações" [level=1] [ref=f9e90]
+      - paragraph [ref=f9e91]: Gerencie lotações, regras de ponto e chefia
+      - generic [ref=f9e92]:
+        - generic [ref=f9e93]: 1 lotação(ões) cadastrada(s)
+        - button "+ Nova Lotação" [ref=f9e96] [cursor=pointer]
+      - table [ref=f9e102]:
+        - caption [ref=f9e103]: Lista de lotações
+        - rowgroup [ref=f9e104]:
+          - row [ref=f9e105]:
+            - columnheader "Nome" [ref=f9e106]
+            - columnheader "Sigla" [ref=f9e107]
+            - columnheader "Banco Horas" [ref=f9e108]
+            - columnheader "Tolerância (min)" [ref=f9e109]
+            - columnheader "Geofence" [ref=f9e110]
+            - columnheader "Ações" [ref=f9e111]
+        - rowgroup [ref=f9e112]:
+          - row [ref=f9e113]:
+            - cell "Secretaria de Obras" [ref=f9e114]
+            - cell "SEOB" [ref=f9e115]
+            - cell "Inativo" [ref=f9e116]
+            - cell "10" [ref=f9e118]
+            - cell "—" [ref=f9e119]
+            - cell [ref=f9e120]:
+              - generic [ref=f9e121]:
+                - button "Regras" [ref=f9e122] [cursor=pointer]
+                - button "Chefia" [ref=f9e123] [cursor=pointer]
+                - button "📍 Locais" [ref=f9e124] [cursor=pointer]
+      - dialog [ref=f9e125]:
+        - generic [ref=f9e126]:
+          - generic [ref=f9e127]:
+            - heading "Nova Lotação" [level=2] [ref=f9e128]
+            - button "Fechar modal" [ref=f9e129] [cursor=pointer]: ×
+          - generic [ref=f9e131]:
+            - generic [ref=f9e132]:
+              - generic [ref=f9e133]: Nome *
+              - textbox "Nome *" [active] [ref=f9e134]
+            - generic [ref=f9e135]:
+              - generic [ref=f9e136]: Sigla
+              - textbox "Sigla" [ref=f9e137]:
+                - /placeholder: "ex: RH, SEOP"
+          - generic [ref=f9e138]:
+            - button "Cancelar" [ref=f9e139] [cursor=pointer]
+            - button "Criar" [ref=f9e140] [cursor=pointer]
+  - contentinfo [ref=f9e100]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

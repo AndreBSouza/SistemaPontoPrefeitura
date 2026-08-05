@@ -1,0 +1,26 @@
+# Configuracao do Prometheus para o ambiente local de desenvolvimento.
+# NAO usar em producao.
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    projeto: ponto-municipal
+    ambiente: dev
+
+scrape_configs:
+  # O proprio Prometheus.
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  # Backend Spring Boot rodando no host (fora do Docker).
+  # Expoe metricas via Micrometer/Actuator em /actuator/prometheus.
+  # Veja a nota no README sobre a dependencia necessaria no pom.xml.
+  - job_name: ponto-backend
+    metrics_path: /actuator/prometheus
+    scheme: http
+    static_configs:
+      - targets: ["host.docker.internal:8080"]
+        labels:
+          application: ponto-backend

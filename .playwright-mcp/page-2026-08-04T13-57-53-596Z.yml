@@ -1,0 +1,21 @@
+- generic [ref=f33e4]:
+  - generic [ref=f33e5]:
+    - generic [ref=f33e6]: 🏛️
+    - heading "Ponto Municipal" [level=1] [ref=f33e7]
+    - paragraph [ref=f33e8]: Sistema de Ponto Eletrônico para Servidores Públicos
+  - generic [ref=f33e9]:
+    - generic [ref=f33e10]:
+      - generic [ref=f33e11]: Tenant ID (X-Tenant-Id) *
+      - textbox "Tenant ID (X-Tenant-Id) *" [active] [ref=f33e12]:
+        - /placeholder: "ex: 550e8400-e29b-41d4-a716-446655440000"
+      - paragraph [ref=f33e13]: UUID exibido pelo DevDataSeeder nos logs do backend ao inicializar.
+    - generic [ref=f33e14]:
+      - generic [ref=f33e15]: Nome do Ente (opcional)
+      - textbox "Nome do Ente (opcional)" [ref=f33e16]:
+        - /placeholder: "ex: Prefeitura de Exemplo"
+    - button "Acessar painel" [ref=f33e17] [cursor=pointer]
+  - generic [ref=f33e18]:
+    - strong [ref=f33e19]: Modo desenvolvimento
+    - text: — autenticação simplificada via Tenant ID.Em produção, será substituído pelo login do ente via
+    - strong [ref=f33e20]: Keycloak OIDC
+    - text: (sem gov.br).

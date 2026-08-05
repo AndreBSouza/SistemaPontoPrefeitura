@@ -1,0 +1,85 @@
+spring:
+  application:
+    name: ponto-municipal
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/ponto}
+    username: ${DB_USER:ponto}
+    password: ${DB_PASSWORD:ponto}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate.jdbc.lob.non_contextual_creation: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # jwk-set-uri cria o decoder de forma preguicosa (nao busca chaves no startup)
+          jwk-set-uri: ${KEYCLOAK_JWKS_URI:http://localhost:8081/realms/ponto/protocol/openid-connect/certs}
+
+server:
+  port: 8080
+  # Atrás de proxy/ingress confiável: honra X-Forwarded-* para que getRemoteAddr() retorne o IP
+  # real do cliente (rate-limit pré-auth por IP, ex.: ativação e onboarding público).
+  forward-headers-strategy: framework
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    redis:
+      # DESLIGADO de proposito: o Redis aqui e cache/rate-limit com degradacao graciosa (se cair,
+      # o sistema consulta o banco e continua correto). Se o indicador entrasse no /health, uma
+      # oscilacao do Redis marcaria a instancia como DOWN e o load balancer a tiraria do ar.
+      enabled: false
+
+# Redis (OPCIONAL) — compartilha rate-limit anti-abuso e cache/revogacao de token de dispositivo
+# entre instancias. ATIVE definindo SPRING_DATA_REDIS_HOST (e _PORT/_PASSWORD se preciso).
+# Sem essa variavel, tudo roda em memoria (correto para instancia unica).
+# OBRIGATORIO quando houver mais de uma replica: sem ele o limite por IP vale por replica e a
+# revogacao de um aparelho demora ate 30s para valer nos outros nos.
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+# Criptografia em repouso de dados sensiveis (ex.: template biometrico — LGPD).
+# Em producao, defina PONTO_CRYPTO_SECRET (segredo forte) via variavel de ambiente/secret manager.
+ponto:
+  crypto:
+    secret: ${PONTO_CRYPTO_SECRET:dev-secret-ponto-municipal-trocar-em-producao}
+
+# Assinatura digital ICP-Brasil (CAdES/PKCS#7) do AFD. ATIVE definindo o caminho da keystore .p12
+# do e-CNPJ do ente — sem isso, o AFD sai só com hash (o bean no-op prevalece; gating intacto).
+# assinatura:
+#   keystore: ${ASSINATURA_KEYSTORE:}   # caminho do .p12 (e-CNPJ A1 ICP-Brasil)
+#   senha: ${ASSINATURA_SENHA:}         # senha da keystore
+#   alias: ${ASSINATURA_ALIAS:}         # opcional; usa o 1o alias com chave privada se vazio
+
+# IA opcional (provedor OpenAI). ATIVE definindo IA_API_KEY (a chave da OpenAI) via variavel de
+# ambiente/secret — NUNCA no codigo/repositorio. Sem IA_API_KEY, o provedor real nao e registrado
+# e a IA fica "indisponivel" (comportamento seguro). Alem da chave, cada recurso ainda precisa ser
+# ligado por ente no painel Funcionalidades (IA_ASSISTENTE / IA_OCR / IA_RESUMO).
+# Opcionais (com defaults): IA_MODELO (gpt-4o-mini), IA_BASE_URL (https://api.openai.com), IA_MAX_TOKENS (1024).
+#
+# LGPD/on-premise: aponte IA_BASE_URL para um gateway INTERNO (modelo on-premise) para o dado NÃO
+# sair do ambiente. Kill-switch: IA_PERMITIR_EXTERNO=false desliga TODA a IA no ambiente (mesmo com
+# chave e mesmo com as flags por ente ligadas) — controle de jurídico/controle interno.
+# ia:
+#   api-key: ${IA_API_KEY:}
+#   base-url: ${IA_BASE_URL:https://api.openai.com}
+#   modelo: ${IA_MODELO:gpt-4o-mini}
+#   max-tokens: ${IA_MAX_TOKENS:1024}
+#   permitir-externo: ${IA_PERMITIR_EXTERNO:true}

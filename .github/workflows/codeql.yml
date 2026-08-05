@@ -1,0 +1,62 @@
+# =============================================================================
+# SAST - CodeQL (GitHub-nativo) para o backend (Java) e o painel web (TS/JS).
+# Analisa o codigo em busca de vulnerabilidades (injecao, XSS, path traversal,
+# etc.) a cada push/PR e semanalmente. Resultados aparecem em Security > Code scanning.
+# =============================================================================
+name: codeql
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+  schedule:
+    - cron: "0 3 * * 1" # segunda-feira, 03:00 UTC
+
+concurrency:
+  group: codeql-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  analyze:
+    name: CodeQL (${{ matrix.language }})
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+      actions: read
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ "java-kotlin", "javascript-typescript" ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Inicializar CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          language: ${{ matrix.language }}
+
+      # --- Java precisa de build para a analise; TS/JS analisa o fonte direto ---
+      - name: Configurar JDK 21 (Temurin)
+        if: matrix.language == 'java-kotlin'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Build do backend (sem testes)
+        if: matrix.language == 'java-kotlin'
+        run: mvn -B -ntp -DskipTests package
+        working-directory: backend
+
+      - name: Autobuild (JS/TS)
+        if: matrix.language == 'javascript-typescript'
+        uses: github/codeql-action/autobuild@v3
+
+      - name: Analisar
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{ matrix.language }}"

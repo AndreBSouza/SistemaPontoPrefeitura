@@ -1,0 +1,24 @@
+# Provisionamento de datasources do Grafana (Prometheus + Loki).
+# Carregado automaticamente na subida do container. NAO usar em producao.
+
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    # Hostname do servico no compose desta stack.
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      httpMethod: POST
+      timeInterval: 15s
+
+  - name: Loki
+    type: loki
+    access: proxy
+    url: http://loki:3100
+    editable: true
+    jsonData:
+      maxLines: 1000

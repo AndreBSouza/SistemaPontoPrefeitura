@@ -1,0 +1,62 @@
+# Java / Maven
+target/
+*.class
+.mvn/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Node / Web
+node_modules/
+dist/
+.vite/
+*.local
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+mobile/build/
+mobile/.idea/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env / segredos (manter exemplos)
+.env
+*.env
+!*.env.example
+
+# Credenciais — NUNCA versionar
+# Assinatura do app Android (a senha do keystore fica em key.properties)
+key.properties
+*.jks
+*.keystore
+# Certificados (e-CNPJ ICP-Brasil para assinar o AFD, TLS, etc.)
+*.p12
+*.pfx
+*.pem
+# Credenciais de serviços externos
+*service-account*.json
+google-services.json
+GoogleService-Info.plist
+# Terraform (state guarda segredos em texto claro)
+*.tfstate
+*.tfstate.*
+.terraform/
+*.tfvars.local
+
+# Logs / temporarios
+*.log
+_in008_*.txt
+
+# Artefatos de build do app — regeneraveis com `flutter build apk/appbundle`
+# (o GitHub rejeita arquivos acima de 100 MB; o APK de debug passa de 190 MB)
+*.apk
+*.aab
+*.ipa

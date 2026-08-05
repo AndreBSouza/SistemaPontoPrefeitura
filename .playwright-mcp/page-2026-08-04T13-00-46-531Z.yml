@@ -1,0 +1,185 @@
+- generic [ref=f17e2]:
+  - link "Pular para conteúdo principal" [ref=f17e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f17e4]:
+    - link "Página inicial" [ref=f17e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f17e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f17e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f17e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f17e9]:
+      - button "Ativar tema claro" [pressed] [ref=f17e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f17e11]:
+        - generic [ref=f17e12]: 👤
+        - generic [ref=f17e13]: Administrador
+      - button "Trocar ente ativo" [ref=f17e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f17e15] [cursor=pointer]: Sair
+  - generic [ref=f17e16]:
+    - navigation "Menu principal" [ref=f17e17]:
+      - generic [ref=f17e18]:
+        - generic [ref=f17e19]: Principal
+        - link "Dashboard" [ref=f17e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f17e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f17e22]:
+        - generic [ref=f17e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f17e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f17e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f17e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f17e27]: 👥
+          - text: Servidores
+      - generic [ref=f17e28]:
+        - generic [ref=f17e29]: Frequência (P1)
+        - link "Jornadas" [ref=f17e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f17e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f17e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f17e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f17e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f17e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f17e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f17e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f17e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f17e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f17e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f17e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f17e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f17e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f17e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f17e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f17e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f17e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f17e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f17e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f17e50]:
+        - generic [ref=f17e51]: Relatórios (P1)
+        - link "Frequência" [ref=f17e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f17e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f17e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f17e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f17e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f17e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f17e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f17e59]: 📶
+          - text: Adesão
+      - generic [ref=f17e60]:
+        - generic [ref=f17e61]: Comunicação
+        - link "Comunicados" [ref=f17e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f17e63]: 📣
+          - text: Comunicados
+      - generic [ref=f17e64]:
+        - generic [ref=f17e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f17e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f17e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f17e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f17e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f17e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f17e71]: 💳
+          - text: Billing
+      - generic [ref=f17e72]:
+        - generic [ref=f17e73]: Totem
+        - link "Totem de Ponto" [ref=f17e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f17e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f17e76]:
+        - generic [ref=f17e77]: Configurações
+        - link "Identidade visual" [ref=f17e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f17e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f17e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f17e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f17e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f17e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f17e84]:
+      - navigation "Caminho de navegação" [ref=f17e85]:
+        - list [ref=f17e86]:
+          - listitem [ref=f17e87]:
+            - link "Dashboard" [ref=f17e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f17e89]: ›BI executivo
+      - heading "BI executivo" [level=1] [ref=f17e90]
+      - paragraph [ref=f17e91]: Presença, absenteísmo e custo de hora extra por secretaria — e simulador orçamentário (LRF)
+      - generic [ref=f17e93]:
+        - generic [ref=f17e94]:
+          - generic [ref=f17e95]: Competência
+          - textbox "Competência" [ref=f17e96]: 2026-08
+        - button "Gerar BI" [ref=f17e97] [cursor=pointer]
+      - generic [ref=f17e98]:
+        - heading "Simulador orçamentário (hora extra × LRF)" [level=3] [ref=f17e99]
+        - generic [ref=f17e100]:
+          - generic [ref=f17e101]:
+            - generic [ref=f17e102]: Horas extras
+            - spinbutton "Horas extras" [ref=f17e103]: "1000"
+          - generic [ref=f17e104]:
+            - generic [ref=f17e105]: Custo/hora (R$)
+            - spinbutton "Custo/hora (R$)" [ref=f17e106]: "30"
+        - generic [ref=f17e107]:
+          - generic [ref=f17e108]:
+            - generic [ref=f17e109]: Gasto c/ pessoal atual (R$)
+            - spinbutton "Gasto c/ pessoal atual (R$)" [ref=f17e110]: "50000000"
+          - generic [ref=f17e111]:
+            - generic [ref=f17e112]: RCL (R$)
+            - spinbutton "RCL (R$)" [ref=f17e113]: "100000000"
+        - button "Simular" [ref=f17e114] [cursor=pointer]
+      - generic [ref=f17e115]:
+        - heading "ROI / economia estimada (R$)" [level=3] [ref=f17e116]
+        - paragraph [ref=f17e117]: Combina o apurado da competência (hora extra e faltas) com os percentuais de redução que você espera com o controle de ponto.
+        - generic [ref=f17e118]:
+          - generic [ref=f17e119]:
+            - generic [ref=f17e120]: Custo/hora extra (R$)
+            - spinbutton "Custo/hora extra (R$)" [ref=f17e121]: "30"
+          - generic [ref=f17e122]:
+            - generic [ref=f17e123]: Redução hora extra (%)
+            - spinbutton "Redução hora extra (%)" [ref=f17e124]: "40"
+        - generic [ref=f17e125]:
+          - generic [ref=f17e126]:
+            - generic [ref=f17e127]: Custo/dia de falta (R$)
+            - spinbutton "Custo/dia de falta (R$)" [ref=f17e128]: "150"
+          - generic [ref=f17e129]:
+            - generic [ref=f17e130]: Redução absenteísmo (%)
+            - spinbutton "Redução absenteísmo (%)" [ref=f17e131]: "20"
+        - button "Calcular economia" [ref=f17e132] [cursor=pointer]
+  - contentinfo [ref=f17e133]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

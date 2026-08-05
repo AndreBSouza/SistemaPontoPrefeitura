@@ -1,0 +1,193 @@
+- generic [ref=f15e2]:
+  - link "Pular para conteúdo principal" [ref=f15e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f15e4]:
+    - link "Página inicial" [ref=f15e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f15e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f15e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f15e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f15e9]:
+      - button "Ativar tema claro" [pressed] [ref=f15e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f15e11]:
+        - generic [ref=f15e12]: 👤
+        - generic [ref=f15e13]: Administrador
+      - button "Trocar ente ativo" [ref=f15e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f15e15] [cursor=pointer]: Sair
+  - generic [ref=f15e16]:
+    - navigation "Menu principal" [ref=f15e17]:
+      - generic [ref=f15e18]:
+        - generic [ref=f15e19]: Principal
+        - link "Dashboard" [ref=f15e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f15e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f15e22]:
+        - generic [ref=f15e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f15e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f15e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f15e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f15e27]: 👥
+          - text: Servidores
+      - generic [ref=f15e28]:
+        - generic [ref=f15e29]: Frequência (P1)
+        - link "Jornadas" [ref=f15e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f15e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f15e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f15e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f15e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f15e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f15e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f15e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f15e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f15e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f15e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f15e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f15e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f15e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f15e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f15e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f15e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f15e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f15e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f15e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f15e50]:
+        - generic [ref=f15e51]: Relatórios (P1)
+        - link "Frequência" [ref=f15e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f15e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f15e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f15e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f15e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f15e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f15e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f15e59]: 📶
+          - text: Adesão
+      - generic [ref=f15e60]:
+        - generic [ref=f15e61]: Comunicação
+        - link "Comunicados" [ref=f15e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f15e63]: 📣
+          - text: Comunicados
+      - generic [ref=f15e64]:
+        - generic [ref=f15e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f15e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f15e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f15e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f15e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f15e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f15e71]: 💳
+          - text: Billing
+      - generic [ref=f15e72]:
+        - generic [ref=f15e73]: Totem
+        - link "Totem de Ponto" [ref=f15e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f15e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f15e76]:
+        - generic [ref=f15e77]: Configurações
+        - link "Identidade visual" [ref=f15e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f15e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f15e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f15e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f15e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f15e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f15e84]:
+      - navigation "Caminho de navegação" [ref=f15e85]:
+        - list [ref=f15e86]:
+          - listitem [ref=f15e87]:
+            - link "Dashboard" [ref=f15e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f15e89]: ›Calendário oficial
+      - heading "Calendário oficial" [level=1] [ref=f15e90]
+      - paragraph [ref=f15e91]: Feriados, pontos facultativos e abonos coletivos — aplicados automaticamente na apuração (não geram falta)
+      - alert "Sucesso" [ref=f15e123]:
+        - generic [ref=f15e124]: ✅
+        - generic [ref=f15e125]: Evento adicionado ao calendário.
+      - generic [ref=f15e92]:
+        - heading "Novo evento" [level=3] [ref=f15e93]
+        - generic [ref=f15e94]:
+          - generic [ref=f15e95]:
+            - generic [ref=f15e96]:
+              - generic [ref=f15e97]: Data *
+              - textbox "Data *" [ref=f15e98]
+            - generic [ref=f15e99]:
+              - generic [ref=f15e100]: Tipo *
+              - combobox "Tipo *" [ref=f15e101]:
+                - option "Feriado" [selected]
+                - option "Ponto facultativo"
+                - option "Abono coletivo"
+          - generic [ref=f15e102]:
+            - generic [ref=f15e103]: Descrição *
+            - textbox "Descrição *" [ref=f15e104]
+          - generic [ref=f15e105]:
+            - generic [ref=f15e106]: Abrangência
+            - combobox "Abrangência" [ref=f15e107]:
+              - option "Todo o ente" [selected]
+              - option "Secretaria de Obras"
+              - option "Secretaria de Educação"
+          - button "Adicionar evento" [disabled] [ref=f15e108]
+      - generic [ref=f15e109]:
+        - generic [ref=f15e110]:
+          - generic [ref=f15e111]: Competência
+          - textbox "Competência" [ref=f15e112]: 2026-08
+        - generic [ref=f15e113]: 1 evento(s)
+      - table [ref=f15e127]:
+        - caption [ref=f15e128]: Eventos do calendário
+        - rowgroup [ref=f15e129]:
+          - row [ref=f15e130]:
+            - columnheader "Data" [ref=f15e131]
+            - columnheader "Tipo" [ref=f15e132]
+            - columnheader "Descrição" [ref=f15e133]
+            - columnheader "Abrangência" [ref=f15e134]
+            - columnheader "Ações" [ref=f15e135]
+        - rowgroup [ref=f15e136]:
+          - row [ref=f15e137]:
+            - cell "2026-08-15" [ref=f15e138]
+            - cell "Feriado" [ref=f15e139]
+            - cell "Feriado municipal" [ref=f15e141]
+            - cell "Todo o ente" [ref=f15e142]
+            - cell [ref=f15e143]:
+              - button "Remover" [ref=f15e144] [cursor=pointer]
+  - contentinfo [ref=f15e118]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

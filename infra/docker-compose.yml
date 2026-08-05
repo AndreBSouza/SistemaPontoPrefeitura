@@ -1,0 +1,52 @@
+name: ponto-municipal-dev
+
+# Infra local para desenvolvimento. NAO usar em producao.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: ponto
+      POSTGRES_PASSWORD: ponto
+      POSTGRES_DB: ponto
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"     # AMQP
+      - "15672:15672"   # console (guest/guest)
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0
+    command: ["start-dev", "--import-realm"]
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: admin
+    ports:
+      - "8081:8080"     # admin console em http://localhost:8081
+    volumes:
+      - ./keycloak:/opt/keycloak/data/import
+
+  minio:
+    image: minio/minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio12345
+    ports:
+      - "9000:9000"     # API S3
+      - "9001:9001"     # console
+    volumes:
+      - miniodata:/data
+
+volumes:
+  pgdata:
+  miniodata:

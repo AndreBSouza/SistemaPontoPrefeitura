@@ -1,0 +1,181 @@
+- generic [ref=f7e2]:
+  - link "Pular para conteúdo principal" [ref=f7e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f7e4]:
+    - link "Página inicial" [ref=f7e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f7e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f7e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f7e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f7e9]:
+      - button "Ativar tema claro" [pressed] [ref=f7e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f7e11]:
+        - generic [ref=f7e12]: 👤
+        - generic [ref=f7e13]: Administrador
+      - button "Trocar ente ativo" [ref=f7e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f7e15] [cursor=pointer]: Sair
+  - generic [ref=f7e16]:
+    - navigation "Menu principal" [ref=f7e17]:
+      - generic [ref=f7e18]:
+        - generic [ref=f7e19]: Principal
+        - link "Dashboard" [ref=f7e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f7e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f7e22]:
+        - generic [ref=f7e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f7e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f7e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f7e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f7e27]: 👥
+          - text: Servidores
+      - generic [ref=f7e28]:
+        - generic [ref=f7e29]: Frequência (P1)
+        - link "Jornadas" [ref=f7e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f7e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f7e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f7e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f7e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f7e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f7e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f7e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f7e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f7e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f7e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f7e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f7e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f7e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f7e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f7e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f7e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f7e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f7e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f7e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f7e50]:
+        - generic [ref=f7e51]: Relatórios (P1)
+        - link "Frequência" [ref=f7e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f7e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f7e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f7e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f7e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f7e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f7e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f7e59]: 📶
+          - text: Adesão
+      - generic [ref=f7e60]:
+        - generic [ref=f7e61]: Comunicação
+        - link "Comunicados" [ref=f7e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f7e63]: 📣
+          - text: Comunicados
+      - generic [ref=f7e64]:
+        - generic [ref=f7e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f7e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f7e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f7e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f7e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f7e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f7e71]: 💳
+          - text: Billing
+      - generic [ref=f7e72]:
+        - generic [ref=f7e73]: Totem
+        - link "Totem de Ponto" [ref=f7e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f7e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f7e76]:
+        - generic [ref=f7e77]: Configurações
+        - link "Identidade visual" [ref=f7e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f7e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f7e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f7e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f7e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f7e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f7e84]:
+      - heading "Funcionalidades" [level=1] [ref=f7e87]
+      - paragraph [ref=f7e88]: Ligue ou desligue recursos opcionais para a sua prefeitura. Tudo começa desligado — nada roda sem a sua decisão.
+      - generic [ref=f7e89]:
+        - generic [ref=f7e90]:
+          - generic [ref=f7e91]:
+            - strong [ref=f7e92]: Detecção de anomalias (heurística, sem IA)
+            - paragraph [ref=f7e93]: Cruza a hora extra de cada servidor com a média do ente e sinaliza os casos muito acima do padrão. Heurística explicável, sem IA — funciona já.
+          - generic [ref=f7e94] [cursor=pointer]:
+            - checkbox "Ligada" [checked] [ref=f7e125]
+            - generic [ref=f7e96]: Ligada
+        - generic [ref=f7e97]:
+          - generic [ref=f7e98]:
+            - strong [ref=f7e99]: Assistente virtual do servidor (IA)
+            - paragraph [ref=f7e100]: "Assistente/chatbot no app do servidor (ex.: \"quanto de banco de horas eu tenho?\"). Requer provedor de IA no ambiente."
+          - generic [ref=f7e101] [cursor=pointer]:
+            - checkbox "Desligada" [ref=f7e102]
+            - generic [ref=f7e103]: Desligada
+        - generic [ref=f7e104]:
+          - generic [ref=f7e105]:
+            - strong [ref=f7e106]: OCR de atestados (IA)
+            - paragraph [ref=f7e107]: Lê a foto do atestado médico e pré-preenche a justificativa (CID, início, dias). Requer provedor de IA no ambiente.
+          - generic [ref=f7e108] [cursor=pointer]:
+            - checkbox "Desligada" [ref=f7e109]
+            - generic [ref=f7e110]: Desligada
+        - generic [ref=f7e111]:
+          - generic [ref=f7e112]:
+            - strong [ref=f7e113]: Resumo inteligente para o gestor (IA)
+            - paragraph [ref=f7e114]: Gera um resumo executivo do mês em linguagem natural a partir dos indicadores. Requer provedor de IA no ambiente.
+          - generic [ref=f7e115] [cursor=pointer]:
+            - checkbox "Desligada" [ref=f7e116]
+            - generic [ref=f7e117]: Desligada
+        - generic [ref=f7e118]:
+          - generic [ref=f7e119]:
+            - strong [ref=f7e120]: Análise de sentimento da pesquisa (IA)
+            - paragraph [ref=f7e121]: Classifica os comentários da pesquisa de satisfação (positivo/neutro/negativo) e resume os temas. Requer provedor de IA no ambiente.
+          - generic [ref=f7e122] [cursor=pointer]:
+            - checkbox "Desligada" [ref=f7e123]
+            - generic [ref=f7e124]: Desligada
+      - generic [ref=f7e126]:
+        - heading "Anomalias — hora extra atípica" [level=2] [ref=f7e127]
+        - paragraph [ref=f7e128]: Servidores com hora extra muito acima da média do ente no mês. Para revisão do RH/controladoria — não é acusação.
+        - generic [ref=f7e129]:
+          - textbox [ref=f7e130]: 2026-08
+          - button "Analisar mês" [ref=f7e131] [cursor=pointer]
+  - contentinfo [ref=f7e86]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

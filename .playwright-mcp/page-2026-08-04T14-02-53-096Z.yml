@@ -1,0 +1,8 @@
+- generic [ref=f36e4]:
+  - heading "Ponto Municipal" [level=1] [ref=f36e5]
+  - paragraph [ref=f36e6]: Ative este navegador com o código do RH
+  - generic [ref=f36e7]:
+    - generic [ref=f36e8]: Código de ativação *
+    - textbox "Código de ativação *" [active] [ref=f36e9]:
+      - /placeholder: AAAA-AAAA
+  - button "Ativar" [ref=f36e10] [cursor=pointer]

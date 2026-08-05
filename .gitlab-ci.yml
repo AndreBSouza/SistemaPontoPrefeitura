@@ -1,0 +1,146 @@
+# =============================================================================
+# Pipeline CI/CD - Ponto Municipal (GitLab CI)
+# -----------------------------------------------------------------------------
+# Estagios:
+#   build   -> compila backend (Maven) e web (npm)
+#   test    -> roda testes do backend (PostgreSQL embarcado via Zonky)
+#   sast    -> analise estatica de seguranca (template GitLab SAST)
+#   scan    -> scan de dependencias (template GitLab Dependency Scanning)
+#   deploy  -> placeholders por ambiente (staging / producao)
+#
+# Os templates de seguranca do GitLab criam jobs proprios (ex.: "spotbugs-sast",
+# "gemnatto-dependency_scanning") e os encaixam nos estagios "test" por padrao;
+# por isso declaramos estagios dedicados e sobrescrevemos o "stage" desses jobs
+# mais abaixo para manter o pipeline organizado.
+# =============================================================================
+
+stages:
+  - build
+  - test
+  - sast
+  - scan
+  - deploy
+
+variables:
+  # Cache local do Maven dentro do projeto para reaproveitar entre jobs.
+  MAVEN_OPTS: "-Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository"
+  MAVEN_CLI_OPTS: "-B -ntp"
+  # Regiao de nuvem alvo (Brasil). Usada pelos jobs de deploy.
+  AWS_DEFAULT_REGION: "sa-east-1"
+
+# Cache compartilhado entre jobs do mesmo branch.
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .m2/repository
+    - web/node_modules
+
+# -----------------------------------------------------------------------------
+# Templates de seguranca do GitLab.
+# - SAST: detecta analisadores automaticamente (Java/Spotbugs, Node/Semgrep...).
+# - Dependency Scanning: identifica CVEs nas dependencias (Maven, npm...).
+# Disponiveis em qualquer tier; relatorios completos exigem Ultimate.
+# -----------------------------------------------------------------------------
+include:
+  - template: Security/SAST.gitlab-ci.yml
+  - template: Security/Dependency-Scanning.gitlab-ci.yml
+  - template: Security/Secret-Detection.gitlab-ci.yml
+
+# =============================================================================
+# BUILD
+# =============================================================================
+backend-build:
+  stage: build
+  image: maven:3.9-eclipse-temurin-21
+  script:
+    - mvn $MAVEN_CLI_OPTS -f backend/pom.xml -DskipTests package
+  artifacts:
+    paths:
+      - backend/target/*.jar
+    expire_in: 1 week
+
+web-build:
+  stage: build
+  image: node:22
+  script:
+    - cd web
+    - npm ci
+    - npm run build
+  artifacts:
+    paths:
+      - web/dist
+    expire_in: 1 week
+
+# =============================================================================
+# TEST
+# =============================================================================
+backend-test:
+  stage: test
+  image: maven:3.9-eclipse-temurin-21
+  script:
+    # Os testes de integracao/RLS usam PostgreSQL embarcado (Zonky), entao nao
+    # e necessario um "services: postgres" aqui.
+    - mvn $MAVEN_CLI_OPTS -f backend/pom.xml test
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - backend/target/surefire-reports/TEST-*.xml
+    expire_in: 1 week
+
+# =============================================================================
+# SAST  (sobrescreve o stage dos jobs gerados pelo template SAST)
+# =============================================================================
+# O template Security/SAST.gitlab-ci.yml registra os analisadores no estagio
+# "test". Reatribuimos ao estagio "sast" via override de regra do .sast-analyzer.
+sast:
+  stage: sast
+
+# =============================================================================
+# SCAN de dependencias / segredos
+# =============================================================================
+dependency_scanning:
+  stage: scan
+
+secret_detection:
+  stage: scan
+
+# =============================================================================
+# DEPLOY (placeholders por ambiente)
+# -----------------------------------------------------------------------------
+# Deploy real ainda nao implementado. Os jobs abaixo sao esqueletos que apenas
+# registram a intencao de deploy e usam o recurso de "environment" do GitLab.
+# Substituir o "script" pela chamada real (ex.: aws ecs update-service,
+# helm upgrade, terraform apply etc.). Regiao alvo: AWS sa-east-1 (Brasil).
+# =============================================================================
+.deploy-template: &deploy-template
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - echo "Deploy do Ponto Municipal para o ambiente '$CI_ENVIRONMENT_NAME'"
+    - echo "Regiao AWS alvo: $AWS_DEFAULT_REGION"
+    - echo "TODO: implementar deploy real (ECS/EKS/Helm/Terraform)."
+    # Exemplo (descomentar e ajustar quando houver infra):
+    # - aws ecs update-service --cluster ponto-$CI_ENVIRONMENT_NAME \
+    #     --service ponto-backend --force-new-deployment
+
+deploy-staging:
+  <<: *deploy-template
+  stage: deploy
+  environment:
+    name: staging
+    url: https://staging.ponto.exemplo.gov.br
+  rules:
+    # Deploy automatico de staging a cada push no branch default.
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+
+deploy-producao:
+  <<: *deploy-template
+  stage: deploy
+  environment:
+    name: producao
+    url: https://ponto.exemplo.gov.br
+  rules:
+    # Producao apenas em tags e com aprovacao manual (deploy controlado).
+    - if: '$CI_COMMIT_TAG'
+      when: manual
+  allow_failure: false

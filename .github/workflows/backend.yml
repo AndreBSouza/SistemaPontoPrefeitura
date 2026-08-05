@@ -1,0 +1,100 @@
+# =============================================================================
+# CI Backend - Ponto Municipal (GitHub Actions)
+# -----------------------------------------------------------------------------
+# Compila e testa o backend Spring Boot (Java 21 / Maven).
+#
+# Estrategia de banco para os testes:
+#   Os testes de integracao/RLS usam PostgreSQL EMBARCADO (io.zonky.test),
+#   que sobe um Postgres real em processo, sem Docker. Por isso o job de testes
+#   NAO precisa, em principio, de um "services: postgres".
+#
+#   Ainda assim, deixamos um service "postgres" configurado e exposto via
+#   variaveis de ambiente. Util caso algum teste (ou um perfil "ci") passe a
+#   apontar para um Postgres externo. Se nao for usado, ele fica ocioso e nao
+#   atrapalha os testes baseados em Zonky.
+# =============================================================================
+name: backend
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
+  pull_request:
+    paths:
+      - "backend/**"
+      - ".github/workflows/backend.yml"
+  workflow_dispatch: {}
+
+# Cancela execucoes antigas do mesmo ref para economizar minutos de runner.
+concurrency:
+  group: backend-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: backend
+
+jobs:
+  build-test:
+    name: Build e testes (Maven + Java 21)
+    runs-on: ubuntu-latest
+
+    # --- Postgres opcional para testes que apontem para banco externo ---------
+    # Os testes padrao usam Zonky (embarcado). Estas variaveis ficam disponiveis
+    # caso um perfil de teste "ci" passe a usar o service abaixo.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: ponto
+          POSTGRES_PASSWORD: ponto
+          POSTGRES_DB: ponto
+        ports:
+          - 5432:5432
+        # Healthcheck garante que o Postgres esteja pronto antes dos testes.
+        options: >-
+          --health-cmd "pg_isready -U ponto"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      # Conexao com o service "postgres" (caso algum teste opte por usa-lo).
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/ponto
+      SPRING_DATASOURCE_USERNAME: ponto
+      SPRING_DATASOURCE_PASSWORD: ponto
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 21 (Temurin) + cache do Maven
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+
+      - name: Build (sem testes)
+        run: mvn -B -ntp -DskipTests package
+
+      - name: Testes (PostgreSQL embarcado via Zonky)
+        run: mvn -B -ntp test
+
+      - name: Publicar relatorio de testes (JUnit)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: backend/target/surefire-reports/
+          if-no-files-found: ignore
+
+      - name: Publicar artefato JAR
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ponto-municipal-backend-jar
+          path: backend/target/*.jar
+          if-no-files-found: warn

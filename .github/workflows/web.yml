@@ -1,0 +1,55 @@
+# =============================================================================
+# CI Web - Ponto Municipal (GitHub Actions)
+# Typecheck (tsc), build (Vite) e testes (Vitest) do painel React + auditoria de deps.
+# =============================================================================
+name: web
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    paths:
+      - "web/**"
+      - ".github/workflows/web.yml"
+  pull_request:
+    paths:
+      - "web/**"
+      - ".github/workflows/web.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: web-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  build-test:
+    name: Build, typecheck e testes (Vite + Vitest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Node 20 + cache do npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Build + typecheck (tsc && vite build)
+        run: npm run build
+
+      - name: Testes (Vitest)
+        run: npm test
+
+      - name: Auditoria de dependencias (npm audit)
+        # Alerta sobre vulnerabilidades sem quebrar o build (aperte para 'critical'
+        # e remova o continue-on-error quando a base estiver limpa).
+        run: npm audit --audit-level=high
+        continue-on-error: true

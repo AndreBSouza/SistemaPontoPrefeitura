@@ -1,0 +1,118 @@
+# =============================================================================
+# CI Mobile iOS - Ponto Municipal (GitHub Actions)
+# -----------------------------------------------------------------------------
+# Compila o app Flutter para iOS em runner macOS (Xcode so existe no macOS).
+# Faz "flutter build ios --no-codesign", ou seja, build de validacao SEM
+# assinatura de codigo. Isso confirma que o projeto iOS compila, sem exigir
+# certificados/provisioning profiles no CI.
+#
+# IMPORTANTE - assinatura e distribuicao (TestFlight / App Store):
+#   O build com --no-codesign NAO gera um .ipa instalavel. Para distribuir e
+#   preciso assinar com certificado da Apple Developer e provisioning profile.
+#   Ha duas abordagens comuns:
+#
+#   1) Codemagic (CI/CD focado em Flutter):
+#      - Gerencia certificados/profiles automaticamente (code signing managed).
+#      - Integra direto com App Store Connect / TestFlight.
+#      - Indicado quando nao se quer manter segredos da Apple no GitHub.
+#
+#   2) Fastlane (no proprio GitHub Actions, runner macOS):
+#      - "fastlane match" sincroniza certificados/profiles via repo git privado.
+#      - "fastlane gym" gera o .ipa assinado.
+#      - "fastlane pilot"/"deliver" envia o build para o TestFlight.
+#      - Requer secrets: API Key do App Store Connect (Issuer ID, Key ID, .p8),
+#        senha do match e acesso ao repo de certificados.
+#
+#   Para um pipeline de release real, troque o step "build --no-codesign" por
+#   uma das abordagens acima (ver bloco comentado ao final).
+# =============================================================================
+name: mobile-ios
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+    paths:
+      - "mobile/**"
+      - ".github/workflows/mobile-ios.yml"
+  pull_request:
+    paths:
+      - "mobile/**"
+      - ".github/workflows/mobile-ios.yml"
+  workflow_dispatch: {}
+
+concurrency:
+  group: mobile-ios-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: mobile
+
+jobs:
+  build-ios:
+    name: Flutter build ios (--no-codesign)
+    # Runner macOS e obrigatorio para builds iOS (toolchain Xcode).
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          # O pubspec exige Dart SDK ^3.10.0; usar uma versao Flutter compativel.
+          flutter-version: "3.35.0"
+          cache: true
+
+      - name: Versao do Flutter
+        run: flutter --version
+
+      - name: Baixar dependencias (pub get)
+        run: flutter pub get
+
+      - name: Analise estatica (flutter analyze)
+        run: flutter analyze
+
+      - name: Testes unitarios
+        run: flutter test
+
+      # Instala os pods do iOS (caso algum plugin precise; nao falha se nao houver).
+      - name: CocoaPods (ios)
+        run: |
+          if [ -f ios/Podfile ]; then
+            cd ios && pod install --repo-update
+          else
+            echo "Sem Podfile; pulando pod install."
+          fi
+        continue-on-error: true
+
+      # Build de VALIDACAO sem assinatura: confirma que o projeto iOS compila.
+      # Nao gera .ipa instalavel/distribuivel.
+      - name: Build iOS (sem assinatura)
+        run: flutter build ios --release --no-codesign
+
+      # -----------------------------------------------------------------------
+      # RELEASE assinado + TestFlight (descomentar em pipeline de release).
+      #
+      # Opcao A) Fastlane no proprio runner macOS:
+      #   - name: Instalar Fastlane
+      #     run: cd ios && bundle install
+      #   - name: Assinar e enviar ao TestFlight
+      #     env:
+      #       APP_STORE_CONNECT_API_KEY_ID:     ${{ secrets.ASC_KEY_ID }}
+      #       APP_STORE_CONNECT_API_ISSUER_ID:  ${{ secrets.ASC_ISSUER_ID }}
+      #       APP_STORE_CONNECT_API_KEY:        ${{ secrets.ASC_API_KEY_P8 }}
+      #       MATCH_PASSWORD:                   ${{ secrets.MATCH_PASSWORD }}
+      #     run: |
+      #       cd ios
+      #       bundle exec fastlane match appstore --readonly
+      #       bundle exec fastlane gym            # gera o .ipa assinado
+      #       bundle exec fastlane pilot upload   # envia ao TestFlight
+      #
+      # Opcao B) Codemagic:
+      #   Configurar o app no Codemagic (codemagic.yaml) com code signing
+      #   gerenciado e publicacao automatica no TestFlight. Nesse caso o build
+      #   iOS de release sai do GitHub Actions e passa a rodar no Codemagic.
+      # -----------------------------------------------------------------------

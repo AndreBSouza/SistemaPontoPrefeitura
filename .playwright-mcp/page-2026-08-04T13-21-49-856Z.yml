@@ -1,0 +1,401 @@
+- generic [ref=f22e2]:
+  - link "Pular para conteúdo principal" [ref=f22e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f22e4]:
+    - link "Página inicial" [ref=f22e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f22e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f22e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f22e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f22e9]:
+      - button "Ativar tema claro" [pressed] [ref=f22e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f22e11]:
+        - generic [ref=f22e12]: 👤
+        - generic [ref=f22e13]: Administrador
+      - button "Trocar ente ativo" [ref=f22e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f22e15] [cursor=pointer]: Sair
+  - generic [ref=f22e16]:
+    - navigation "Menu principal" [ref=f22e17]:
+      - generic [ref=f22e18]:
+        - generic [ref=f22e19]: Principal
+        - link "Dashboard" [ref=f22e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f22e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f22e22]:
+        - generic [ref=f22e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f22e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f22e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f22e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f22e27]: 👥
+          - text: Servidores
+      - generic [ref=f22e28]:
+        - generic [ref=f22e29]: Frequência (P1)
+        - link "Jornadas" [ref=f22e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f22e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f22e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f22e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f22e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f22e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f22e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f22e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f22e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f22e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f22e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f22e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f22e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f22e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f22e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f22e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f22e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f22e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f22e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f22e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f22e50]:
+        - generic [ref=f22e51]: Relatórios (P1)
+        - link "Frequência" [ref=f22e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f22e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f22e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f22e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f22e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f22e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f22e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f22e59]: 📶
+          - text: Adesão
+      - generic [ref=f22e60]:
+        - generic [ref=f22e61]: Comunicação
+        - link "Comunicados" [ref=f22e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f22e63]: 📣
+          - text: Comunicados
+      - generic [ref=f22e64]:
+        - generic [ref=f22e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f22e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f22e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f22e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f22e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f22e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f22e71]: 💳
+          - text: Billing
+      - generic [ref=f22e72]:
+        - generic [ref=f22e73]: Totem
+        - link "Totem de Ponto" [ref=f22e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f22e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f22e76]:
+        - generic [ref=f22e77]: Configurações
+        - link "Identidade visual" [ref=f22e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f22e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f22e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f22e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f22e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f22e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f22e84]:
+      - navigation "Caminho de navegação" [ref=f22e85]:
+        - list [ref=f22e86]:
+          - listitem [ref=f22e87]:
+            - link "Dashboard" [ref=f22e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f22e89]: ›Espelho / Fechamento
+      - heading "Espelho de Frequência" [level=1] [ref=f22e90]
+      - paragraph [ref=f22e91]: Consulte e feche competências mensais
+      - generic [ref=f22e103]:
+        - generic [ref=f22e104]:
+          - generic [ref=f22e105]: Vínculo
+          - combobox "Vínculo" [ref=f22e106]:
+            - option "— Selecione —"
+            - option "Servidor Demo — M-DEMO"
+            - option "Maria Souza — M-100" [selected]
+        - generic [ref=f22e107]:
+          - generic [ref=f22e108]: Competência
+          - textbox "Competência" [ref=f22e109]: 2026-08
+        - button "Consultar" [ref=f22e111] [cursor=pointer]
+      - generic [ref=f22e112]:
+        - generic [ref=f22e113]:
+          - paragraph [ref=f22e114]: Total trabalhado
+          - paragraph [ref=f22e115]: 00:00
+        - generic [ref=f22e116]:
+          - paragraph [ref=f22e117]: Total esperado
+          - paragraph [ref=f22e118]: 32:00
+        - generic [ref=f22e119]:
+          - paragraph [ref=f22e120]: Saldo
+          - paragraph [ref=f22e121]: "-32:00"
+        - generic [ref=f22e122]:
+          - paragraph [ref=f22e123]: Status
+          - paragraph [ref=f22e124]: ABERTA
+      - button "Fechar competência" [ref=f22e127] [cursor=pointer]
+      - table [ref=f22e129]:
+        - caption [ref=f22e130]: Dias do espelho
+        - rowgroup [ref=f22e131]:
+          - row [ref=f22e132]:
+            - columnheader "Data" [ref=f22e133]
+            - columnheader "Dia útil?" [ref=f22e134]
+            - columnheader "Trabalhado" [ref=f22e135]
+            - columnheader "Esperado" [ref=f22e136]
+            - columnheader "Justificado?" [ref=f22e137]
+            - columnheader "Ocorrências" [ref=f22e138]
+        - rowgroup [ref=f22e139]:
+          - row [ref=f22e140]:
+            - cell "2026-08-01" [ref=f22e141]
+            - cell "Não" [ref=f22e142]
+            - cell "00:00" [ref=f22e143]
+            - cell "00:00" [ref=f22e144]
+            - cell "—" [ref=f22e145]
+            - cell "—" [ref=f22e146]
+          - row [ref=f22e147]:
+            - cell "2026-08-02" [ref=f22e148]
+            - cell "Não" [ref=f22e149]
+            - cell "00:00" [ref=f22e150]
+            - cell "00:00" [ref=f22e151]
+            - cell "—" [ref=f22e152]
+            - cell "—" [ref=f22e153]
+          - row [ref=f22e154]:
+            - cell "2026-08-03" [ref=f22e155]
+            - cell "Não" [ref=f22e156]
+            - cell "00:00" [ref=f22e157]
+            - cell "00:00" [ref=f22e158]
+            - cell "—" [ref=f22e159]
+            - cell "—" [ref=f22e160]
+          - row [ref=f22e161]:
+            - cell "2026-08-04" [ref=f22e162]
+            - cell "Sim" [ref=f22e163]
+            - cell "00:00" [ref=f22e164]
+            - cell "08:00" [ref=f22e165]
+            - cell "—" [ref=f22e166]
+            - cell "FALTA 08:00" [ref=f22e167]
+          - row [ref=f22e169]:
+            - cell "2026-08-05" [ref=f22e170]
+            - cell "Não" [ref=f22e171]
+            - cell "00:00" [ref=f22e172]
+            - cell "00:00" [ref=f22e173]
+            - cell "—" [ref=f22e174]
+            - cell "—" [ref=f22e175]
+          - row [ref=f22e176]:
+            - cell "2026-08-06" [ref=f22e177]
+            - cell "Não" [ref=f22e178]
+            - cell "00:00" [ref=f22e179]
+            - cell "00:00" [ref=f22e180]
+            - cell "—" [ref=f22e181]
+            - cell "—" [ref=f22e182]
+          - row [ref=f22e183]:
+            - cell "2026-08-07" [ref=f22e184]
+            - cell "Não" [ref=f22e185]
+            - cell "00:00" [ref=f22e186]
+            - cell "00:00" [ref=f22e187]
+            - cell "—" [ref=f22e188]
+            - cell "—" [ref=f22e189]
+          - row [ref=f22e190]:
+            - cell "2026-08-08" [ref=f22e191]
+            - cell "Não" [ref=f22e192]
+            - cell "00:00" [ref=f22e193]
+            - cell "00:00" [ref=f22e194]
+            - cell "—" [ref=f22e195]
+            - cell "—" [ref=f22e196]
+          - row [ref=f22e197]:
+            - cell "2026-08-09" [ref=f22e198]
+            - cell "Não" [ref=f22e199]
+            - cell "00:00" [ref=f22e200]
+            - cell "00:00" [ref=f22e201]
+            - cell "—" [ref=f22e202]
+            - cell "—" [ref=f22e203]
+          - row [ref=f22e204]:
+            - cell "2026-08-10" [ref=f22e205]
+            - cell "Não" [ref=f22e206]
+            - cell "00:00" [ref=f22e207]
+            - cell "00:00" [ref=f22e208]
+            - cell "—" [ref=f22e209]
+            - cell "—" [ref=f22e210]
+          - row [ref=f22e211]:
+            - cell "2026-08-11" [ref=f22e212]
+            - cell "Sim" [ref=f22e213]
+            - cell "00:00" [ref=f22e214]
+            - cell "08:00" [ref=f22e215]
+            - cell "—" [ref=f22e216]
+            - cell "FALTA 08:00" [ref=f22e217]
+          - row [ref=f22e219]:
+            - cell "2026-08-12" [ref=f22e220]
+            - cell "Não" [ref=f22e221]
+            - cell "00:00" [ref=f22e222]
+            - cell "00:00" [ref=f22e223]
+            - cell "—" [ref=f22e224]
+            - cell "—" [ref=f22e225]
+          - row [ref=f22e226]:
+            - cell "2026-08-13" [ref=f22e227]
+            - cell "Não" [ref=f22e228]
+            - cell "00:00" [ref=f22e229]
+            - cell "00:00" [ref=f22e230]
+            - cell "—" [ref=f22e231]
+            - cell "—" [ref=f22e232]
+          - row [ref=f22e233]:
+            - cell "2026-08-14" [ref=f22e234]
+            - cell "Não" [ref=f22e235]
+            - cell "00:00" [ref=f22e236]
+            - cell "00:00" [ref=f22e237]
+            - cell "—" [ref=f22e238]
+            - cell "—" [ref=f22e239]
+          - row [ref=f22e240]:
+            - cell "2026-08-15" [ref=f22e241]
+            - cell "Não" [ref=f22e242]
+            - cell "00:00" [ref=f22e243]
+            - cell "00:00" [ref=f22e244]
+            - cell "—" [ref=f22e245]
+            - cell "—" [ref=f22e246]
+          - row [ref=f22e247]:
+            - cell "2026-08-16" [ref=f22e248]
+            - cell "Não" [ref=f22e249]
+            - cell "00:00" [ref=f22e250]
+            - cell "00:00" [ref=f22e251]
+            - cell "—" [ref=f22e252]
+            - cell "—" [ref=f22e253]
+          - row [ref=f22e254]:
+            - cell "2026-08-17" [ref=f22e255]
+            - cell "Não" [ref=f22e256]
+            - cell "00:00" [ref=f22e257]
+            - cell "00:00" [ref=f22e258]
+            - cell "—" [ref=f22e259]
+            - cell "—" [ref=f22e260]
+          - row [ref=f22e261]:
+            - cell "2026-08-18" [ref=f22e262]
+            - cell "Sim" [ref=f22e263]
+            - cell "00:00" [ref=f22e264]
+            - cell "08:00" [ref=f22e265]
+            - cell "—" [ref=f22e266]
+            - cell "FALTA 08:00" [ref=f22e267]
+          - row [ref=f22e269]:
+            - cell "2026-08-19" [ref=f22e270]
+            - cell "Não" [ref=f22e271]
+            - cell "00:00" [ref=f22e272]
+            - cell "00:00" [ref=f22e273]
+            - cell "—" [ref=f22e274]
+            - cell "—" [ref=f22e275]
+          - row [ref=f22e276]:
+            - cell "2026-08-20" [ref=f22e277]
+            - cell "Não" [ref=f22e278]
+            - cell "00:00" [ref=f22e279]
+            - cell "00:00" [ref=f22e280]
+            - cell "—" [ref=f22e281]
+            - cell "—" [ref=f22e282]
+          - row [ref=f22e283]:
+            - cell "2026-08-21" [ref=f22e284]
+            - cell "Não" [ref=f22e285]
+            - cell "00:00" [ref=f22e286]
+            - cell "00:00" [ref=f22e287]
+            - cell "—" [ref=f22e288]
+            - cell "—" [ref=f22e289]
+          - row [ref=f22e290]:
+            - cell "2026-08-22" [ref=f22e291]
+            - cell "Não" [ref=f22e292]
+            - cell "00:00" [ref=f22e293]
+            - cell "00:00" [ref=f22e294]
+            - cell "—" [ref=f22e295]
+            - cell "—" [ref=f22e296]
+          - row [ref=f22e297]:
+            - cell "2026-08-23" [ref=f22e298]
+            - cell "Não" [ref=f22e299]
+            - cell "00:00" [ref=f22e300]
+            - cell "00:00" [ref=f22e301]
+            - cell "—" [ref=f22e302]
+            - cell "—" [ref=f22e303]
+          - row [ref=f22e304]:
+            - cell "2026-08-24" [ref=f22e305]
+            - cell "Não" [ref=f22e306]
+            - cell "00:00" [ref=f22e307]
+            - cell "00:00" [ref=f22e308]
+            - cell "—" [ref=f22e309]
+            - cell "—" [ref=f22e310]
+          - row [ref=f22e311]:
+            - cell "2026-08-25" [ref=f22e312]
+            - cell "Sim" [ref=f22e313]
+            - cell "00:00" [ref=f22e314]
+            - cell "08:00" [ref=f22e315]
+            - cell "—" [ref=f22e316]
+            - cell "FALTA 08:00" [ref=f22e317]
+          - row [ref=f22e319]:
+            - cell "2026-08-26" [ref=f22e320]
+            - cell "Não" [ref=f22e321]
+            - cell "00:00" [ref=f22e322]
+            - cell "00:00" [ref=f22e323]
+            - cell "—" [ref=f22e324]
+            - cell "—" [ref=f22e325]
+          - row [ref=f22e326]:
+            - cell "2026-08-27" [ref=f22e327]
+            - cell "Não" [ref=f22e328]
+            - cell "00:00" [ref=f22e329]
+            - cell "00:00" [ref=f22e330]
+            - cell "—" [ref=f22e331]
+            - cell "—" [ref=f22e332]
+          - row [ref=f22e333]:
+            - cell "2026-08-28" [ref=f22e334]
+            - cell "Não" [ref=f22e335]
+            - cell "00:00" [ref=f22e336]
+            - cell "00:00" [ref=f22e337]
+            - cell "—" [ref=f22e338]
+            - cell "—" [ref=f22e339]
+          - row [ref=f22e340]:
+            - cell "2026-08-29" [ref=f22e341]
+            - cell "Não" [ref=f22e342]
+            - cell "00:00" [ref=f22e343]
+            - cell "00:00" [ref=f22e344]
+            - cell "—" [ref=f22e345]
+            - cell "—" [ref=f22e346]
+          - row [ref=f22e347]:
+            - cell "2026-08-30" [ref=f22e348]
+            - cell "Não" [ref=f22e349]
+            - cell "00:00" [ref=f22e350]
+            - cell "00:00" [ref=f22e351]
+            - cell "—" [ref=f22e352]
+            - cell "—" [ref=f22e353]
+          - row [ref=f22e354]:
+            - cell "2026-08-31" [ref=f22e355]
+            - cell "Não" [ref=f22e356]
+            - cell "00:00" [ref=f22e357]
+            - cell "00:00" [ref=f22e358]
+            - cell "—" [ref=f22e359]
+            - cell "—" [ref=f22e360]
+      - generic [ref=f22e96]:
+        - heading "O que falta fechar — 2026-08" [level=3] [ref=f22e98]
+        - button "Atualizar pendências" [ref=f22e100] [cursor=pointer]
+  - contentinfo [ref=f22e101]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

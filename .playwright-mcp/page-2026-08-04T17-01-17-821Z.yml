@@ -1,0 +1,109 @@
+- generic [ref=f42e2]:
+  - link "Pular para conteúdo principal" [ref=f42e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f42e4]:
+    - link "Página inicial" [ref=f42e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f42e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f42e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f42e8]: "Tenant: f0e865b4-905e-49c9-ae8e-b024c913bd1d"
+    - generic [ref=f42e9]:
+      - button "Ativar tema claro" [pressed] [ref=f42e10] [cursor=pointer]: ☀️ Claro
+      - 'generic "Papéis: operador" [ref=f42e11]':
+        - generic [ref=f42e12]: 👤
+        - generic [ref=f42e13]: Operador (provedor do SaaS)
+      - button "Trocar ente ativo" [ref=f42e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f42e15] [cursor=pointer]: Sair
+  - generic [ref=f42e16]:
+    - navigation "Menu principal" [ref=f42e17]:
+      - generic [ref=f42e18]:
+        - generic [ref=f42e19]: Principal
+        - link "Dashboard" [ref=f42e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f42e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f42e22]:
+        - generic [ref=f42e23]: Integrações (P2)
+        - link "Contrato" [ref=f42e24] [cursor=pointer]:
+          - /url: /contrato
+          - generic [ref=f42e25]: 📄
+          - text: Contrato
+      - generic [ref=f42e26]:
+        - generic [ref=f42e27]: Totem
+        - link "Totem de Ponto" [ref=f42e28] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f42e29]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f42e30]:
+        - generic [ref=f42e31]: Configurações
+        - link "Adesão de entes" [ref=f42e32] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f42e33]: 🏢
+          - text: Adesão de entes
+    - main [ref=f42e34]:
+      - navigation "Caminho de navegação" [ref=f42e35]:
+        - list [ref=f42e36]:
+          - listitem [ref=f42e37]: Início
+      - heading "Dashboard" [level=1] [ref=f42e38]
+      - paragraph [ref=f42e39]: Visão geral do sistema de ponto eletrônico
+      - generic [ref=f42e40]:
+        - generic [ref=f42e41]:
+          - paragraph [ref=f42e42]: Órgãos / Lotações
+          - paragraph [ref=f42e43]: …
+          - paragraph [ref=f42e44]: cadastrados
+        - generic [ref=f42e45]:
+          - paragraph [ref=f42e46]: Servidores
+          - paragraph [ref=f42e47]: …
+          - paragraph [ref=f42e48]: ativos
+        - generic [ref=f42e49]:
+          - paragraph [ref=f42e50]: Jornadas
+          - paragraph [ref=f42e51]: …
+          - paragraph [ref=f42e52]: configuradas
+        - generic [ref=f42e53]:
+          - paragraph [ref=f42e54]: Competência atual
+          - paragraph [ref=f42e55]: agosto de 2026
+      - generic [ref=f42e56]:
+        - heading "Acesso rápido" [level=2] [ref=f42e58]
+        - generic [ref=f42e59]:
+          - link "Órgãos" [ref=f42e60] [cursor=pointer]:
+            - /url: /orgaos
+            - generic [ref=f42e61]: 🏛️
+            - text: Órgãos
+          - link "Servidores" [ref=f42e62] [cursor=pointer]:
+            - /url: /servidores
+            - generic [ref=f42e63]: 👥
+            - text: Servidores
+          - link "Jornadas" [ref=f42e64] [cursor=pointer]:
+            - /url: /jornadas
+            - generic [ref=f42e65]: 🕐
+            - text: Jornadas
+          - link "Escalas" [ref=f42e66] [cursor=pointer]:
+            - /url: /escalas
+            - generic [ref=f42e67]: 📅
+            - text: Escalas
+          - link "Atestados" [ref=f42e68] [cursor=pointer]:
+            - /url: /atestados
+            - generic [ref=f42e69]: 📋
+            - text: Atestados
+          - link "Espelho" [ref=f42e70] [cursor=pointer]:
+            - /url: /espelho
+            - generic [ref=f42e71]: 📊
+            - text: Espelho
+          - link "Banco de Horas" [ref=f42e72] [cursor=pointer]:
+            - /url: /banco-horas
+            - generic [ref=f42e73]: ⏱️
+            - text: Banco de Horas
+          - link "Relatórios" [ref=f42e74] [cursor=pointer]:
+            - /url: /relatorios
+            - generic [ref=f42e75]: 📈
+            - text: Relatórios
+          - link "Conformidade" [ref=f42e76] [cursor=pointer]:
+            - /url: /conformidade
+            - generic [ref=f42e77]: ✔️
+            - text: Conformidade
+          - link "Totem" [ref=f42e78] [cursor=pointer]:
+            - /url: /totem
+            - generic [ref=f42e79]: 📟
+            - text: Totem
+  - contentinfo [ref=f42e80]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

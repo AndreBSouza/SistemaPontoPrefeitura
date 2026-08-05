@@ -1,0 +1,71 @@
+# =============================================================================
+# CI Shorebird Patch (OTA / hotfix) - Ponto Municipal
+# -----------------------------------------------------------------------------
+# Empurra um PATCH de código Dart sobre o ÚLTIMO release, SEM passar pela loja.
+# Acionado manualmente (workflow_dispatch), escolhendo a plataforma.
+#
+# Secrets necessários (Settings > Secrets and variables > Actions):
+#   - SHOREBIRD_TOKEN         -> gere com `shorebird login:ci`
+#   - ANDROID_KEYSTORE_BASE64 -> `base64 -w0 ponto-release-key.jks`  (o patch reconstrói o app)
+#   - ANDROID_STORE_PASSWORD / ANDROID_KEY_ALIAS / ANDROID_KEY_PASSWORD
+#
+# LIMITE: patch cobre só código Dart. Mudança nativa (plugin/permissão/som) exige
+# um novo `shorebird release` + submissão à loja. Ver docs/shorebird-ota.md.
+# =============================================================================
+name: shorebird-patch
+
+on:
+  workflow_dispatch:
+    inputs:
+      plataforma:
+        description: Plataforma do patch OTA
+        type: choice
+        options: [android, ios]
+        default: android
+
+concurrency:
+  group: shorebird-patch-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: mobile
+
+jobs:
+  patch:
+    name: Shorebird patch (${{ inputs.plataforma }})
+    # iOS exige runner macOS; Android roda em Linux.
+    runs-on: ${{ inputs.plataforma == 'ios' && 'macos-latest' || 'ubuntu-latest' }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 17 (Temurin)
+        if: ${{ inputs.plataforma == 'android' }}
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      # O `shorebird patch` reconstrói o app para calcular o diff → precisa da
+      # mesma assinatura do release (keystore). Restaurada a partir dos secrets.
+      - name: Restaurar keystore (Android)
+        if: ${{ inputs.plataforma == 'android' }}
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > android/app/ponto-release-key.jks
+          cat > android/key.properties <<EOF
+          storeFile=ponto-release-key.jks
+          storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}
+          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
+          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
+          EOF
+
+      # A action do Shorebird instala a CLI (que já traz o Flutter próprio dela).
+      - name: Configurar Shorebird
+        uses: shorebirdtech/setup-shorebird@v1
+
+      - name: Aplicar patch (OTA)
+        run: shorebird patch ${{ inputs.plataforma }} --no-confirm
+        env:
+          SHOREBIRD_TOKEN: ${{ secrets.SHOREBIRD_TOKEN }}

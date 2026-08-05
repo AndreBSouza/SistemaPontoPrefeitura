@@ -1,0 +1,194 @@
+- generic [ref=f23e2]:
+  - link "Pular para conteúdo principal" [ref=f23e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f23e4]:
+    - link "Página inicial" [ref=f23e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f23e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f23e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f23e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f23e9]:
+      - button "Ativar tema claro" [pressed] [ref=f23e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f23e11]:
+        - generic [ref=f23e12]: 👤
+        - generic [ref=f23e13]: Administrador
+      - button "Trocar ente ativo" [ref=f23e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f23e15] [cursor=pointer]: Sair
+  - generic [ref=f23e16]:
+    - navigation "Menu principal" [ref=f23e17]:
+      - generic [ref=f23e18]:
+        - generic [ref=f23e19]: Principal
+        - link "Dashboard" [ref=f23e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f23e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f23e22]:
+        - generic [ref=f23e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f23e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f23e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f23e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f23e27]: 👥
+          - text: Servidores
+      - generic [ref=f23e28]:
+        - generic [ref=f23e29]: Frequência (P1)
+        - link "Jornadas" [ref=f23e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f23e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f23e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f23e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f23e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f23e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f23e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f23e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f23e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f23e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f23e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f23e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f23e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f23e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f23e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f23e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f23e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f23e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f23e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f23e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f23e50]:
+        - generic [ref=f23e51]: Relatórios (P1)
+        - link "Frequência" [ref=f23e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f23e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f23e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f23e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f23e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f23e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f23e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f23e59]: 📶
+          - text: Adesão
+      - generic [ref=f23e60]:
+        - generic [ref=f23e61]: Comunicação
+        - link "Comunicados" [ref=f23e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f23e63]: 📣
+          - text: Comunicados
+      - generic [ref=f23e64]:
+        - generic [ref=f23e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f23e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f23e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f23e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f23e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f23e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f23e71]: 💳
+          - text: Billing
+      - generic [ref=f23e72]:
+        - generic [ref=f23e73]: Totem
+        - link "Totem de Ponto" [ref=f23e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f23e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f23e76]:
+        - generic [ref=f23e77]: Configurações
+        - link "Identidade visual" [ref=f23e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f23e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f23e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f23e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f23e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f23e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f23e84]:
+      - navigation "Caminho de navegação" [ref=f23e85]:
+        - list [ref=f23e86]:
+          - listitem [ref=f23e87]:
+            - link "Dashboard" [ref=f23e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f23e89]: ›Conformidade IN-008
+      - heading "Conformidade IN-008" [level=1] [ref=f23e90]
+      - paragraph [ref=f23e91]: Verificação de conformidade com a Instrução Normativa IN-008/MPOG
+      - generic [ref=f23e93]:
+        - generic [ref=f23e94]:
+          - generic [ref=f23e95]: Competência
+          - textbox "Competência" [ref=f23e96]: 2026-08
+        - button "Verificar" [ref=f23e97] [cursor=pointer]
+        - button "Dossiê de defesa (TCM)" [ref=f23e98] [cursor=pointer]
+      - generic [ref=f23e99]:
+        - generic [ref=f23e100]:
+          - heading "Detecção de irregularidades" [level=3] [ref=f23e102]
+          - button "Analisar acúmulo / fantasmas" [ref=f23e104] [cursor=pointer]
+        - paragraph [ref=f23e105]: Cruza jornadas sobrepostas (acúmulo ilícito de cargos) e aponta vínculos ativos sem nenhuma batida no período (possíveis "servidores fantasma"). Sem biometria — insumo de controle interno.
+      - generic [ref=f23e106]:
+        - generic [ref=f23e107]:
+          - heading "Alertas de risco" [level=3] [ref=f23e109]
+          - button "Carregar alertas" [ref=f23e111] [cursor=pointer]
+        - paragraph [ref=f23e112]: Ajustes manuais de banco de horas (vetor de abuso) e batidas marcadas fora da cerca no período.
+      - generic [ref=f23e113]:
+        - generic [ref=f23e114]:
+          - heading "Inconsistências de jornada" [level=3] [ref=f23e116]
+          - button "Verificar" [ref=f23e118] [cursor=pointer]
+        - paragraph [ref=f23e119]: Dias com número ímpar de marcações (intervalo aberto — possível esquecimento de batida).
+      - generic [ref=f23e120]:
+        - generic [ref=f23e121]:
+          - heading "Hora-atividade (Lei do Piso)" [level=3] [ref=f23e123]
+          - button "Verificar" [active] [ref=f23e125] [cursor=pointer]
+        - paragraph [ref=f23e126]: Jornadas com hora-atividade declarada. O mínimo legal do magistério é 1/3 da carga.
+        - table [ref=f23e136]:
+          - caption [ref=f23e137]: Hora-atividade
+          - rowgroup [ref=f23e138]:
+            - row [ref=f23e139]:
+              - columnheader "Jornada" [ref=f23e140]
+              - columnheader "Carga (min)" [ref=f23e141]
+              - columnheader "Hora-atividade" [ref=f23e142]
+              - columnheader "Mínimo (1/3)" [ref=f23e143]
+              - columnheader "%" [ref=f23e144]
+              - columnheader "Situação" [ref=f23e145]
+          - rowgroup [ref=f23e146]:
+            - row [ref=f23e147]:
+              - cell "Professor 25h" [ref=f23e148]
+              - cell "1500" [ref=f23e149]
+              - cell "500" [ref=f23e150]
+              - cell "500" [ref=f23e151]
+              - cell "33.3%" [ref=f23e152]
+              - cell "Atende" [ref=f23e153]
+      - generic [ref=f23e128]:
+        - heading "Abonos e exceções" [level=3] [ref=f23e130]
+        - generic [ref=f23e131]:
+          - button "Listar" [ref=f23e132] [cursor=pointer]
+          - button "Exportar CSV" [ref=f23e133] [cursor=pointer]
+  - contentinfo [ref=f23e134]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

@@ -1,0 +1,77 @@
+name: ponto-municipal-observability
+
+# Stack de observabilidade local para desenvolvimento. NAO usar em producao.
+#
+# Sobe Prometheus (metricas), Grafana (dashboards), Loki (logs) e Promtail
+# (coletor de logs). Pensado para rodar junto da stack principal em
+# ../docker-compose.yml e raspar o backend Spring Boot rodando no host.
+#
+# Uso:
+#   docker compose -f docker-compose.observability.yml up -d
+#
+# Acesso:
+#   Prometheus -> http://localhost:9090
+#   Grafana    -> http://localhost:3001  (admin/admin)
+#   Loki       -> http://localhost:3100  (API)
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=15d"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - promdata:/prometheus
+    extra_hosts:
+      # Permite acessar o backend rodando no host (host.docker.internal)
+      # tambem no Linux, onde esse hostname nao existe por padrao.
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: admin
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      # Provisiona automaticamente os datasources de ./grafana/datasources.yml
+      GF_PATHS_PROVISIONING: /etc/grafana/provisioning
+    ports:
+      - "3001:3000"     # console em http://localhost:3001 (admin/admin)
+    volumes:
+      - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+      - grafanadata:/var/lib/grafana
+    depends_on:
+      - prometheus
+      - loki
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:3.1.1
+    command: ["-config.file=/etc/loki/local-config.yaml"]
+    ports:
+      - "3100:3100"     # API de logs
+    volumes:
+      - lokidata:/loki
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:3.1.1
+    command: ["-config.file=/etc/promtail/config.yml"]
+    volumes:
+      - ./promtail.yml:/etc/promtail/config.yml:ro
+      # Coleta os logs dos containers Docker do host.
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - loki
+    restart: unless-stopped
+
+volumes:
+  promdata:
+  grafanadata:
+  lokidata:

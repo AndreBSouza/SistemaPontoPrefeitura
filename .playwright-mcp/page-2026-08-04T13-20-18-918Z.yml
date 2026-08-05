@@ -1,0 +1,189 @@
+- generic [ref=f21e2]:
+  - link "Pular para conteúdo principal" [ref=f21e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f21e4]:
+    - link "Página inicial" [ref=f21e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f21e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f21e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f21e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f21e9]:
+      - button "Ativar tema claro" [pressed] [ref=f21e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f21e11]:
+        - generic [ref=f21e12]: 👤
+        - generic [ref=f21e13]: Administrador
+      - button "Trocar ente ativo" [ref=f21e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f21e15] [cursor=pointer]: Sair
+  - generic [ref=f21e16]:
+    - navigation "Menu principal" [ref=f21e17]:
+      - generic [ref=f21e18]:
+        - generic [ref=f21e19]: Principal
+        - link "Dashboard" [ref=f21e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f21e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f21e22]:
+        - generic [ref=f21e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f21e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f21e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f21e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f21e27]: 👥
+          - text: Servidores
+      - generic [ref=f21e28]:
+        - generic [ref=f21e29]: Frequência (P1)
+        - link "Jornadas" [ref=f21e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f21e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f21e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f21e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f21e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f21e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f21e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f21e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f21e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f21e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f21e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f21e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f21e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f21e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f21e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f21e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f21e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f21e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f21e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f21e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f21e50]:
+        - generic [ref=f21e51]: Relatórios (P1)
+        - link "Frequência" [ref=f21e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f21e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f21e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f21e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f21e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f21e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f21e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f21e59]: 📶
+          - text: Adesão
+      - generic [ref=f21e60]:
+        - generic [ref=f21e61]: Comunicação
+        - link "Comunicados" [ref=f21e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f21e63]: 📣
+          - text: Comunicados
+      - generic [ref=f21e64]:
+        - generic [ref=f21e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f21e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f21e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f21e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f21e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f21e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f21e71]: 💳
+          - text: Billing
+      - generic [ref=f21e72]:
+        - generic [ref=f21e73]: Totem
+        - link "Totem de Ponto" [ref=f21e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f21e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f21e76]:
+        - generic [ref=f21e77]: Configurações
+        - link "Identidade visual" [ref=f21e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f21e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f21e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f21e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f21e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f21e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f21e84]:
+      - navigation "Caminho de navegação" [ref=f21e85]:
+        - list [ref=f21e86]:
+          - listitem [ref=f21e87]:
+            - link "Dashboard" [ref=f21e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f21e89]: ›Delegação de aprovação
+      - heading "Delegação de aprovação" [level=1] [ref=f21e90]
+      - paragraph [ref=f21e91]: "Substituto do gestor: no período, o delegado vê e decide as pendências do titular"
+      - alert "Sucesso" [ref=f21e117]:
+        - generic [ref=f21e118]: ✅
+        - generic [ref=f21e119]: Delegação criada.
+      - generic [ref=f21e92]:
+        - heading "Nova delegação" [level=3] [ref=f21e93]
+        - generic [ref=f21e94]:
+          - generic [ref=f21e95]:
+            - generic [ref=f21e96]:
+              - generic [ref=f21e97]: Gestor titular (delega) *
+              - combobox "Gestor titular (delega) *" [ref=f21e98]:
+                - option "— Selecione —" [selected]
+                - option "Servidor Demo"
+                - option "Maria Souza"
+            - generic [ref=f21e99]:
+              - generic [ref=f21e100]: Substituto (recebe) *
+              - combobox "Substituto (recebe) *" [ref=f21e101]:
+                - option "— Selecione —" [selected]
+                - option "Servidor Demo"
+                - option "Maria Souza"
+          - generic [ref=f21e102]:
+            - generic [ref=f21e103]:
+              - generic [ref=f21e104]: Início *
+              - textbox "Início *" [ref=f21e105]
+            - generic [ref=f21e106]:
+              - generic [ref=f21e107]: Fim *
+              - textbox "Fim *" [ref=f21e108]
+          - button "Criar delegação" [disabled] [ref=f21e109]
+      - table [ref=f21e121]:
+        - caption [ref=f21e122]: Delegações
+        - rowgroup [ref=f21e123]:
+          - row [ref=f21e124]:
+            - columnheader "Titular" [ref=f21e125]
+            - columnheader "Substituto" [ref=f21e126]
+            - columnheader "Período" [ref=f21e127]
+            - columnheader "Situação" [ref=f21e128]
+            - columnheader "Ações" [ref=f21e129]
+        - rowgroup [ref=f21e130]:
+          - row [ref=f21e131]:
+            - cell "Servidor Demo" [ref=f21e132]
+            - cell "Maria Souza" [ref=f21e133]
+            - cell "2026-09-01 a 2026-09-15" [ref=f21e134]
+            - cell "Ativa" [ref=f21e135]
+            - cell [ref=f21e137]:
+              - button "Revogar" [ref=f21e138] [cursor=pointer]
+  - contentinfo [ref=f21e113]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

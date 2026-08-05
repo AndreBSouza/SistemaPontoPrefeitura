@@ -1,0 +1,32 @@
+# =============================================================================
+# Dependabot - alertas e PRs de atualizacao de dependencias (backend, web, mobile, CI).
+# Cobre o scan de vulnerabilidades de dependencias (SCA) de forma GitHub-nativa.
+# =============================================================================
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: "/backend"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels: [ "dependencias", "backend" ]
+
+  - package-ecosystem: npm
+    directory: "/web"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels: [ "dependencias", "web" ]
+
+  - package-ecosystem: pub
+    directory: "/mobile"
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    labels: [ "dependencias", "mobile" ]
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    labels: [ "dependencias", "ci" ]

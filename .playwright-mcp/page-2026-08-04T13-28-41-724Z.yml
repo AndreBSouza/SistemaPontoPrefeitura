@@ -1,0 +1,138 @@
+- generic [ref=f32e2]:
+  - link "Pular para conteúdo principal" [ref=f32e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f32e4]:
+    - link "Página inicial" [ref=f32e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f32e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f32e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f32e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f32e9]:
+      - button "Ativar tema claro" [pressed] [ref=f32e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f32e11]:
+        - generic [ref=f32e12]: 👤
+        - generic [ref=f32e13]: Administrador
+      - button "Trocar ente ativo" [ref=f32e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f32e15] [cursor=pointer]: Sair
+  - generic [ref=f32e16]:
+    - navigation "Menu principal" [ref=f32e17]:
+      - generic [ref=f32e18]:
+        - generic [ref=f32e19]: Principal
+        - link "Dashboard" [ref=f32e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f32e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f32e22]:
+        - generic [ref=f32e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f32e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f32e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f32e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f32e27]: 👥
+          - text: Servidores
+      - generic [ref=f32e28]:
+        - generic [ref=f32e29]: Frequência (P1)
+        - link "Jornadas" [ref=f32e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f32e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f32e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f32e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f32e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f32e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f32e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f32e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f32e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f32e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f32e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f32e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f32e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f32e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f32e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f32e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f32e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f32e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f32e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f32e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f32e50]:
+        - generic [ref=f32e51]: Relatórios (P1)
+        - link "Frequência" [ref=f32e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f32e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f32e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f32e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f32e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f32e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f32e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f32e59]: 📶
+          - text: Adesão
+      - generic [ref=f32e60]:
+        - generic [ref=f32e61]: Comunicação
+        - link "Comunicados" [ref=f32e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f32e63]: 📣
+          - text: Comunicados
+      - generic [ref=f32e64]:
+        - generic [ref=f32e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f32e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f32e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f32e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f32e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f32e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f32e71]: 💳
+          - text: Billing
+      - generic [ref=f32e72]:
+        - generic [ref=f32e73]: Totem
+        - link "Totem de Ponto" [ref=f32e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f32e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f32e76]:
+        - generic [ref=f32e77]: Configurações
+        - link "Identidade visual" [ref=f32e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f32e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f32e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f32e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f32e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f32e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f32e84]:
+      - paragraph [ref=f32e85]: Carregando…
+  - contentinfo [ref=f32e86]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

@@ -1,0 +1,194 @@
+- generic [ref=f38e2]:
+  - link "Pular para conteúdo principal" [ref=f38e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f38e4]:
+    - link "Página inicial" [ref=f38e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f38e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f38e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f38e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f38e9]:
+      - button "Ativar tema claro" [pressed] [ref=f38e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f38e11]:
+        - generic [ref=f38e12]: 👤
+        - generic [ref=f38e13]: Administrador
+      - button "Trocar ente ativo" [ref=f38e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f38e15] [cursor=pointer]: Sair
+  - generic [ref=f38e16]:
+    - navigation "Menu principal" [ref=f38e17]:
+      - generic [ref=f38e18]:
+        - generic [ref=f38e19]: Principal
+        - link "Dashboard" [ref=f38e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f38e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f38e22]:
+        - generic [ref=f38e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f38e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f38e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f38e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f38e27]: 👥
+          - text: Servidores
+      - generic [ref=f38e28]:
+        - generic [ref=f38e29]: Frequência (P1)
+        - link "Jornadas" [ref=f38e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f38e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f38e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f38e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f38e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f38e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f38e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f38e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f38e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f38e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f38e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f38e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f38e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f38e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f38e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f38e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f38e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f38e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f38e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f38e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f38e50]:
+        - generic [ref=f38e51]: Relatórios (P1)
+        - link "Frequência" [ref=f38e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f38e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f38e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f38e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f38e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f38e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f38e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f38e59]: 📶
+          - text: Adesão
+      - generic [ref=f38e60]:
+        - generic [ref=f38e61]: Comunicação
+        - link "Comunicados" [ref=f38e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f38e63]: 📣
+          - text: Comunicados
+      - generic [ref=f38e64]:
+        - generic [ref=f38e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f38e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f38e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f38e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f38e69]: 🔍
+          - text: Auditoria
+        - link "Contrato" [ref=f38e70] [cursor=pointer]:
+          - /url: /contrato
+          - generic [ref=f38e71]: 📄
+          - text: Contrato
+      - generic [ref=f38e72]:
+        - generic [ref=f38e73]: Totem
+        - link "Totem de Ponto" [ref=f38e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f38e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f38e76]:
+        - generic [ref=f38e77]: Configurações
+        - link "Identidade visual" [ref=f38e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f38e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f38e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f38e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f38e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f38e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f38e84]:
+      - navigation "Caminho de navegação" [ref=f38e85]:
+        - list [ref=f38e86]:
+          - listitem [ref=f38e87]:
+            - link "Dashboard" [ref=f38e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f38e89]: ›Contrato
+      - heading "Contrato" [level=1] [ref=f38e90]
+      - paragraph [ref=f38e91]: Contrato de fornecimento do sistema ao ente — valor fixo (dispensa/licitação), não cobrança por demanda.
+      - generic [ref=f38e92]:
+        - generic [ref=f38e93]:
+          - heading "Novo contrato" [level=2] [ref=f38e94]
+          - generic [ref=f38e95]:
+            - generic [ref=f38e96]:
+              - generic [ref=f38e97]: Modalidade *
+              - combobox "Modalidade *" [ref=f38e98]:
+                - option "Dispensa de licitação"
+                - option "Pregão eletrônico" [selected]
+                - option "Inexigibilidade"
+                - option "Concorrência"
+                - option "Adesão a ata de registro de preços"
+                - option "Outra"
+            - generic [ref=f38e99]:
+              - generic [ref=f38e100]: Nº processo / contrato
+              - textbox "Nº processo / contrato" [ref=f38e101]:
+                - /placeholder: "ex: PE 01/2026"
+          - generic [ref=f38e103]:
+            - generic [ref=f38e104]: Nota de empenho
+            - textbox "Nota de empenho" [ref=f38e105]:
+              - /placeholder: "ex: 2026NE000123"
+          - generic [ref=f38e106]:
+            - generic [ref=f38e107]:
+              - generic [ref=f38e108]: Vigência início *
+              - textbox "Vigência início *" [ref=f38e109]
+            - generic [ref=f38e110]:
+              - generic [ref=f38e111]: Vigência fim *
+              - textbox "Vigência fim *" [ref=f38e112]
+          - generic [ref=f38e113]:
+            - generic [ref=f38e114]:
+              - generic [ref=f38e115]: Valor global (R$)
+              - spinbutton "Valor global (R$)" [ref=f38e116]
+            - generic [ref=f38e117]:
+              - generic [ref=f38e118]: Parcela mensal (R$)
+              - spinbutton "Parcela mensal (R$)" [ref=f38e119]
+          - generic [ref=f38e120]:
+            - generic [ref=f38e121]: Observação
+            - textbox "Observação" [ref=f38e122]
+          - button "Registrar contrato" [ref=f38e123] [cursor=pointer]
+        - generic [ref=f38e124]:
+          - heading "Relatório de execução" [level=2] [ref=f38e125]
+          - paragraph [ref=f38e126]: Para anexar ao processo de pagamento/liquidação do mês.
+          - generic [ref=f38e127]:
+            - generic [ref=f38e128]:
+              - generic [ref=f38e129]: Competência
+              - textbox "Competência" [ref=f38e130]: 2026-08
+            - button "Gerar" [ref=f38e131] [cursor=pointer]
+      - heading "Contratos" [level=2] [ref=f38e132]
+      - status "Carregando…" [ref=f38e133]
+  - contentinfo [ref=f38e136]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

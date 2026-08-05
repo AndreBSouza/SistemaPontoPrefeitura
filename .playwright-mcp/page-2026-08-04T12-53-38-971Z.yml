@@ -1,0 +1,190 @@
+- generic [ref=f10e2]:
+  - link "Pular para conteúdo principal" [ref=f10e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f10e4]:
+    - link "Página inicial" [ref=f10e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f10e6]: 🏛️
+      - text: Caturai Servidor
+      - generic [ref=f10e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f10e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f10e9]:
+      - button "Ativar tema claro" [pressed] [ref=f10e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f10e11]:
+        - generic [ref=f10e12]: 👤
+        - generic [ref=f10e13]: Administrador
+      - button "Trocar ente ativo" [ref=f10e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f10e15] [cursor=pointer]: Sair
+  - generic [ref=f10e16]:
+    - navigation "Menu principal" [ref=f10e17]:
+      - generic [ref=f10e18]:
+        - generic [ref=f10e19]: Principal
+        - link "Dashboard" [ref=f10e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f10e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f10e22]:
+        - generic [ref=f10e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f10e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f10e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f10e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f10e27]: 👥
+          - text: Servidores
+      - generic [ref=f10e28]:
+        - generic [ref=f10e29]: Frequência (P1)
+        - link "Jornadas" [ref=f10e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f10e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f10e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f10e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f10e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f10e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f10e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f10e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f10e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f10e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f10e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f10e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f10e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f10e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f10e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f10e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f10e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f10e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f10e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f10e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f10e50]:
+        - generic [ref=f10e51]: Relatórios (P1)
+        - link "Frequência" [ref=f10e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f10e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f10e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f10e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f10e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f10e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f10e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f10e59]: 📶
+          - text: Adesão
+      - generic [ref=f10e60]:
+        - generic [ref=f10e61]: Comunicação
+        - link "Comunicados" [ref=f10e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f10e63]: 📣
+          - text: Comunicados
+      - generic [ref=f10e64]:
+        - generic [ref=f10e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f10e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f10e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f10e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f10e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f10e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f10e71]: 💳
+          - text: Billing
+      - generic [ref=f10e72]:
+        - generic [ref=f10e73]: Totem
+        - link "Totem de Ponto" [ref=f10e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f10e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f10e76]:
+        - generic [ref=f10e77]: Configurações
+        - link "Identidade visual" [ref=f10e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f10e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f10e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f10e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f10e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f10e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f10e84]:
+      - navigation "Caminho de navegação" [ref=f10e85]:
+        - list [ref=f10e86]:
+          - listitem [ref=f10e87]:
+            - link "Dashboard" [ref=f10e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f10e89]: ›Servidores
+      - heading "Servidores" [level=1] [ref=f10e90]
+      - paragraph [ref=f10e91]: Cadastro de servidores e vínculos empregatícios
+      - alert "Sucesso" [ref=f10e166]:
+        - generic [ref=f10e167]: ✅
+        - generic [ref=f10e168]: Servidor criado com sucesso.
+      - generic [ref=f10e92]:
+        - generic [ref=f10e93]: 2 servidor(es)
+        - generic [ref=f10e95]:
+          - button "📥 Importar CSV" [ref=f10e96] [cursor=pointer]
+          - button "+ Novo Servidor" [ref=f10e97] [cursor=pointer]
+      - table [ref=f10e170]:
+        - caption [ref=f10e171]: Lista de servidores
+        - rowgroup [ref=f10e172]:
+          - row [ref=f10e173]:
+            - columnheader "Nome" [ref=f10e174]
+            - columnheader "CPF" [ref=f10e175]
+            - columnheader "E-mail" [ref=f10e176]
+            - columnheader "Vínculos" [ref=f10e177]
+            - columnheader "Situação" [ref=f10e178]
+            - columnheader "App Móvel" [ref=f10e179]
+        - rowgroup [ref=f10e180]:
+          - row [ref=f10e181]:
+            - cell "Servidor Demo" [ref=f10e182]
+            - cell "39053344705" [ref=f10e183]
+            - cell "demo@ente.gov.br" [ref=f10e184]
+            - cell "M-DEMO / ESTATUTARIO — Analista" [ref=f10e185]
+            - cell "Ativo" [ref=f10e187]
+            - cell "M-DEMO Gerar código de ativação para vínculo M-DEMO Gerenciar dispositivos do vínculo M-DEMO Registros e localização do vínculo M-DEMO Sobreaviso do vínculo M-DEMO" [ref=f10e189]:
+              - generic [ref=f10e191]:
+                - generic [ref=f10e192]: M-DEMO
+                - button "Gerar código de ativação para vínculo M-DEMO" [ref=f10e193] [cursor=pointer]: 📲 Ativar
+                - button "Gerenciar dispositivos do vínculo M-DEMO" [ref=f10e194] [cursor=pointer]: 📱 Dispositivos
+                - button "Registros e localização do vínculo M-DEMO" [ref=f10e195] [cursor=pointer]: 📍 Localização
+                - button "Sobreaviso do vínculo M-DEMO" [ref=f10e196] [cursor=pointer]: ⏰ Sobreaviso
+          - row [ref=f10e197]:
+            - cell "Maria Souza" [ref=f10e198]
+            - cell "11144477735" [ref=f10e199]
+            - cell "maria@ente.gov.br" [ref=f10e200]
+            - cell "M-100 / ESTATUTARIO — Professora" [ref=f10e201]
+            - cell "Ativo" [ref=f10e203]
+            - cell "M-100 Gerar código de ativação para vínculo M-100 Gerenciar dispositivos do vínculo M-100 Registros e localização do vínculo M-100 Sobreaviso do vínculo M-100" [ref=f10e205]:
+              - generic [ref=f10e207]:
+                - generic [ref=f10e208]: M-100
+                - button "Gerar código de ativação para vínculo M-100" [ref=f10e209] [cursor=pointer]: 📲 Ativar
+                - button "Gerenciar dispositivos do vínculo M-100" [ref=f10e210] [cursor=pointer]: 📱 Dispositivos
+                - button "Registros e localização do vínculo M-100" [ref=f10e211] [cursor=pointer]: 📍 Localização
+                - button "Sobreaviso do vínculo M-100" [ref=f10e212] [cursor=pointer]: ⏰ Sobreaviso
+  - contentinfo [ref=f10e101]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais

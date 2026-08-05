@@ -1,0 +1,216 @@
+- generic [ref=f35e2]:
+  - link "Pular para conteúdo principal" [ref=f35e3] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=f35e4]:
+    - link "Página inicial" [ref=f35e5] [cursor=pointer]:
+      - /url: /dashboard
+      - generic [ref=f35e6]: 🏛️
+      - text: Ponto Municipal
+      - generic [ref=f35e7]: Sistema de Ponto Eletrônico
+    - generic "Ente ativo" [ref=f35e8]: "Ente: Prefeitura Demo"
+    - generic [ref=f35e9]:
+      - button "Ativar tema claro" [pressed] [ref=f35e10] [cursor=pointer]: ☀️ Claro
+      - generic [ref=f35e11]:
+        - generic [ref=f35e12]: 👤
+        - generic [ref=f35e13]: Administrador
+      - button "Trocar ente ativo" [ref=f35e14] [cursor=pointer]: Trocar ente
+      - button "Sair do sistema" [ref=f35e15] [cursor=pointer]: Sair
+  - generic [ref=f35e16]:
+    - navigation "Menu principal" [ref=f35e17]:
+      - generic [ref=f35e18]:
+        - generic [ref=f35e19]: Principal
+        - link "Dashboard" [ref=f35e20] [cursor=pointer]:
+          - /url: /dashboard
+          - generic [ref=f35e21]: 🏠
+          - text: Dashboard
+      - generic [ref=f35e22]:
+        - generic [ref=f35e23]: Cadastros (P0)
+        - link "Órgãos / Lotações" [ref=f35e24] [cursor=pointer]:
+          - /url: /orgaos
+          - generic [ref=f35e25]: 🏛️
+          - text: Órgãos / Lotações
+        - link "Servidores" [ref=f35e26] [cursor=pointer]:
+          - /url: /servidores
+          - generic [ref=f35e27]: 👥
+          - text: Servidores
+      - generic [ref=f35e28]:
+        - generic [ref=f35e29]: Frequência (P1)
+        - link "Jornadas" [ref=f35e30] [cursor=pointer]:
+          - /url: /jornadas
+          - generic [ref=f35e31]: 🕐
+          - text: Jornadas
+        - link "Escalas" [ref=f35e32] [cursor=pointer]:
+          - /url: /escalas
+          - generic [ref=f35e33]: 📅
+          - text: Escalas
+        - link "Calendário oficial" [ref=f35e34] [cursor=pointer]:
+          - /url: /calendario
+          - generic [ref=f35e35]: 🗓️
+          - text: Calendário oficial
+        - link "Atestados / Justificativas" [ref=f35e36] [cursor=pointer]:
+          - /url: /atestados
+          - generic [ref=f35e37]: 📋
+          - text: Atestados / Justificativas
+        - link "Correções de marcação" [ref=f35e38] [cursor=pointer]:
+          - /url: /correcoes
+          - generic [ref=f35e39]: ✏️
+          - text: Correções de marcação
+        - link "Férias / Licenças" [ref=f35e40] [cursor=pointer]:
+          - /url: /ferias
+          - generic [ref=f35e41]: 🏖️
+          - text: Férias / Licenças
+        - link "Delegação de aprovação" [ref=f35e42] [cursor=pointer]:
+          - /url: /delegacoes
+          - generic [ref=f35e43]: 🤝
+          - text: Delegação de aprovação
+        - link "Espelho / Fechamento" [ref=f35e44] [cursor=pointer]:
+          - /url: /espelho
+          - generic [ref=f35e45]: 📊
+          - text: Espelho / Fechamento
+        - link "Banco de Horas" [ref=f35e46] [cursor=pointer]:
+          - /url: /banco-horas
+          - generic [ref=f35e47]: ⏱️
+          - text: Banco de Horas
+        - link "Projetos / Convênios" [ref=f35e48] [cursor=pointer]:
+          - /url: /projetos
+          - generic [ref=f35e49]: 🗂️
+          - text: Projetos / Convênios
+      - generic [ref=f35e50]:
+        - generic [ref=f35e51]: Relatórios (P1)
+        - link "Frequência" [ref=f35e52] [cursor=pointer]:
+          - /url: /relatorios
+          - generic [ref=f35e53]: 📈
+          - text: Frequência
+        - link "Conformidade IN-008" [ref=f35e54] [cursor=pointer]:
+          - /url: /conformidade
+          - generic [ref=f35e55]: ✔️
+          - text: Conformidade IN-008
+        - link "BI executivo" [ref=f35e56] [cursor=pointer]:
+          - /url: /bi
+          - generic [ref=f35e57]: 📊
+          - text: BI executivo
+        - link "Adesão" [ref=f35e58] [cursor=pointer]:
+          - /url: /adesao
+          - generic [ref=f35e59]: 📶
+          - text: Adesão
+      - generic [ref=f35e60]:
+        - generic [ref=f35e61]: Comunicação
+        - link "Comunicados" [ref=f35e62] [cursor=pointer]:
+          - /url: /comunicados
+          - generic [ref=f35e63]: 📣
+          - text: Comunicados
+      - generic [ref=f35e64]:
+        - generic [ref=f35e65]: Integrações (P2)
+        - link "Folha / eSocial" [ref=f35e66] [cursor=pointer]:
+          - /url: /integracoes
+          - generic [ref=f35e67]: 🔗
+          - text: Folha / eSocial
+        - link "Auditoria" [ref=f35e68] [cursor=pointer]:
+          - /url: /auditoria
+          - generic [ref=f35e69]: 🔍
+          - text: Auditoria
+        - link "Billing" [ref=f35e70] [cursor=pointer]:
+          - /url: /billing
+          - generic [ref=f35e71]: 💳
+          - text: Billing
+      - generic [ref=f35e72]:
+        - generic [ref=f35e73]: Totem
+        - link "Totem de Ponto" [ref=f35e74] [cursor=pointer]:
+          - /url: /totem
+          - generic [ref=f35e75]: 📟
+          - text: Totem de Ponto
+      - generic [ref=f35e76]:
+        - generic [ref=f35e77]: Configurações
+        - link "Identidade visual" [ref=f35e78] [cursor=pointer]:
+          - /url: /identidade
+          - generic [ref=f35e79]: 🎨
+          - text: Identidade visual
+        - link "Funcionalidades" [ref=f35e80] [cursor=pointer]:
+          - /url: /funcionalidades
+          - generic [ref=f35e81]: 🎛️
+          - text: Funcionalidades
+        - link "Adesão de entes" [ref=f35e82] [cursor=pointer]:
+          - /url: /onboarding-entes
+          - generic [ref=f35e83]: 🏢
+          - text: Adesão de entes
+    - main [ref=f35e84]:
+      - navigation "Caminho de navegação" [ref=f35e85]:
+        - list [ref=f35e86]:
+          - listitem [ref=f35e87]:
+            - link "Dashboard" [ref=f35e88] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f35e89]: ›Servidores
+      - heading "Servidores" [level=1] [ref=f35e90]
+      - paragraph [ref=f35e91]: Cadastro de servidores e vínculos empregatícios
+      - generic [ref=f35e92]:
+        - generic [ref=f35e93]: 2 servidor(es)
+        - generic [ref=f35e95]:
+          - button "📥 Importar CSV" [ref=f35e96] [cursor=pointer]
+          - button "+ Novo Servidor" [ref=f35e97] [cursor=pointer]
+      - table [ref=f35e243]:
+        - caption [ref=f35e244]: Lista de servidores
+        - rowgroup [ref=f35e245]:
+          - row [ref=f35e246]:
+            - columnheader "Nome" [ref=f35e247]
+            - columnheader "CPF" [ref=f35e248]
+            - columnheader "E-mail" [ref=f35e249]
+            - columnheader "Vínculos" [ref=f35e250]
+            - columnheader "Órgão" [ref=f35e251]
+            - columnheader "Situação" [ref=f35e252]
+            - columnheader "App Móvel" [ref=f35e253]
+        - rowgroup [ref=f35e254]:
+          - row [ref=f35e255]:
+            - cell "Servidor Demo" [ref=f35e256]
+            - cell "39053344705" [ref=f35e257]
+            - cell "demo@ente.gov.br" [ref=f35e258]
+            - cell "M-DEMO / ESTATUTARIO — Analista" [ref=f35e259]
+            - cell "Secretaria de Saúde" [ref=f35e261]
+            - cell "Ativo" [ref=f35e263]
+            - cell "M-DEMO Gerar código de ativação para vínculo M-DEMO Gerenciar dispositivos do vínculo M-DEMO Registros e localização do vínculo M-DEMO Sobreaviso do vínculo M-DEMO Lotar vínculo M-DEMO em um órgão" [ref=f35e265]:
+              - generic [ref=f35e267]:
+                - generic [ref=f35e268]: M-DEMO
+                - button "Gerar código de ativação para vínculo M-DEMO" [ref=f35e269] [cursor=pointer]: 📲 Ativar
+                - button "Gerenciar dispositivos do vínculo M-DEMO" [ref=f35e270] [cursor=pointer]: 📱 Dispositivos
+                - button "Registros e localização do vínculo M-DEMO" [ref=f35e271] [cursor=pointer]: 📍 Localização
+                - button "Sobreaviso do vínculo M-DEMO" [ref=f35e272] [cursor=pointer]: ⏰ Sobreaviso
+                - button "Lotar vínculo M-DEMO em um órgão" [ref=f35e273] [cursor=pointer]: 🏛️ Órgão
+          - row [ref=f35e274]:
+            - cell "Ana Lima" [ref=f35e275]
+            - cell "11144477735" [ref=f35e276]
+            - cell "—" [ref=f35e277]
+            - cell "M-200 / ESTATUTARIO — Enfermeira" [ref=f35e278]
+            - cell "Secretaria de Saúde" [ref=f35e280]
+            - cell "Ativo" [ref=f35e282]
+            - cell "M-200 Gerar código de ativação para vínculo M-200 Gerenciar dispositivos do vínculo M-200 Registros e localização do vínculo M-200 Sobreaviso do vínculo M-200 Lotar vínculo M-200 em um órgão" [ref=f35e284]:
+              - generic [ref=f35e286]:
+                - generic [ref=f35e287]: M-200
+                - button "Gerar código de ativação para vínculo M-200" [active] [ref=f35e288] [cursor=pointer]: 📲 Ativar
+                - button "Gerenciar dispositivos do vínculo M-200" [ref=f35e289] [cursor=pointer]: 📱 Dispositivos
+                - button "Registros e localização do vínculo M-200" [ref=f35e290] [cursor=pointer]: 📍 Localização
+                - button "Sobreaviso do vínculo M-200" [ref=f35e291] [cursor=pointer]: ⏰ Sobreaviso
+                - button "Lotar vínculo M-200 em um órgão" [ref=f35e292] [cursor=pointer]: 🏛️ Órgão
+      - dialog [ref=f35e293]:
+        - generic [ref=f35e294]:
+          - generic [ref=f35e295]:
+            - heading "Código de Ativação do Aplicativo" [level=2] [ref=f35e296]
+            - button "Fechar modal" [ref=f35e297] [cursor=pointer]: ×
+          - generic [ref=f35e298]:
+            - alert "Atenção" [ref=f35e299]:
+              - generic [ref=f35e300]: ⚠️
+              - generic [ref=f35e301]:
+                - strong [ref=f35e302]: "Atenção:"
+                - text: este código é mostrado
+                - strong [ref=f35e303]: uma única vez
+                - text: . Anote ou copie antes de fechar.
+            - generic [ref=f35e304]:
+              - paragraph [ref=f35e305]: Código de ativação
+              - 'generic "Código de ativação: EWSS-KR65" [ref=f35e306]': EWSS-KR65
+            - button "Copiar código de ativação" [ref=f35e308] [cursor=pointer]: 📋 Copiar código
+            - paragraph [ref=f35e309]:
+              - text: "Válido até:"
+              - strong [ref=f35e310]: 05/08/2026, 11:02
+            - alert "Informação" [ref=f35e312]:
+              - generic [ref=f35e313]: ℹ️
+              - generic [ref=f35e314]: Dite este código ao servidor para que ele o informe no aplicativo móvel. O código expira automaticamente após o prazo acima.
+          - button "Fechar" [ref=f35e316] [cursor=pointer]
+  - contentinfo [ref=f35e101]: Ponto Municipal © 2024 — Sistema de Ponto Eletrônico para Servidores Públicos Municipais
